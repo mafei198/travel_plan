@@ -1,0 +1,18 @@
+# == Schema Information
+# Schema version: 20110517094558
+#
+# Table name: recommend_plans
+#
+#  id         :integer         not null, primary key
+#  plan_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  plan_id: 1
+
+two:
+  plan_id: 1
