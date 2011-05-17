@@ -1,0 +1,73 @@
+model:
+  1.Plan #旅行计划 
+    字段：name:string description:text start_off_place:string start_off_date:date people_num:integer user_id:integer travel_type_id:integer
+    has_many :plan_attractions
+    has_many :attractions, :through => :plan_attraction
+    has_many :plan_places
+    has_many :places, :through => :plan_place
+    has_many :schedules
+    has_many :baggage_lists
+    has_many :hot_plans
+    has_many :recommend_plans
+    belongs_to :user
+    belongs_to :travel_type
+
+  ----has_many----
+    Schedule #日程
+      字段：plan_date:date plan_id:integer
+      has_many :journeys
+      belongs_to :plan
+
+      Journey #行程
+        字段：name:string description:text from_to:string budget:decimal type:string type_id:integer schedule_id:integer
+        #name 唯一表示、必填
+        belongs_to :schedule
+    
+    BaggageList #行李清单
+      字段：plan_id:integer
+      belongs_to :plan
+
+    HotPlan
+      字段：plan_id:integer
+      belongs_to :plan
+
+    RecommendPlan
+      字段：plan_id:integer
+      belongs_to :plan
+
+  2.Place #旅游目的地
+      字段：name:string 
+      has_many :attractions
+      has_many :hot_places
+      has_many :plan_places
+      has_many :plans, :through => :plan_place
+
+      HotPlace
+        字段：place_id:integer
+        belongs_to :place
+
+  3.PlanPlace #plan与旅游目的地的关联表
+      字段：plan_id:integer place_id:integer
+      belongs_to :plan
+      belongs_to :place
+
+  4.Attraction #景点
+      字段：name:string description:text opentime:string address:string
+      has_many :plan_attractions
+      has_many :plans, :through => :plan_attraction
+      belongs_to :place
+    
+  5.PlanAttraction #plan与attraction的关联表
+      字段：plan_id:integer attraction_id:integer
+      belongs_to :plan
+      belongs_to :attraction
+
+  6.TravelType #旅行类型
+      字段：name:string 
+      has_many :plans
+
+  7.User #用户
+    字段： 
+    has_many :plans
+
+
