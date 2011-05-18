@@ -2,9 +2,9 @@ model:
   1.Plan #旅行计划 
     字段：name:string description:text start_off_place:string start_off_date:date people_num:integer user_id:integer travel_type_id:integer
     has_many :plan_attractions
-    has_many :attractions, :through => :plan_attraction
+    has_many :attractions, :through => :plan_attractions
     has_many :plan_places
-    has_many :places, :through => :plan_place
+    has_many :places, :through => :plan_places
     has_many :schedules
     has_many :baggage_lists
     has_many :hot_plans
@@ -40,7 +40,7 @@ model:
       has_many :attractions
       has_many :hot_places
       has_many :plan_places
-      has_many :plans, :through => :plan_place
+      has_many :plans, :through => :plan_places
 
       HotPlace
         字段：place_id:integer
@@ -54,7 +54,7 @@ model:
   4.Attraction #景点
       字段：name:string description:text opentime:string address:string
       has_many :plan_attractions
-      has_many :plans, :through => :plan_attraction
+      has_many :plans, :through => :plan_attractions
       belongs_to :place
     
   5.PlanAttraction #plan与attraction的关联表
@@ -69,5 +69,9 @@ model:
   7.User #用户
     字段： 
     has_many :plans
-
+-------------------------------------------------------------------------------------------------
+controller:
+  Plan
+    actions:
+      
 

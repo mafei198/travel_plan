@@ -1,0 +1,42 @@
+<div class="tc-header-top tc-container">
+  <div class="tc-center-container">
+    <div class="tc-right">
+    </div>	
+  </div>	
+</div>
+
+<div class="tc-header-logo tc-container">
+  <div class="tc-center-container">
+    <div class="tc-logo">
+      <div class="tc-title"><strong>旅人</strong>旅行计划</div>
+    </div>
+    <div class="tc-logo-right">
+      <div class="tc-search-container">
+        <form id="_frmSearch" name="" action="" method="post" onsubmit="return chkSearch('txtKeyword','输入城市或景点名称');">
+          <input name="k" id="_txtKeyword" size="36" class="tc-input-keyword" value="输入城市或景点名称" onclick="javascript:if(this.value == '输入城市或景点名称') this.value = '';" onblur="javascript:if(this.value == '') this.value = '输入城市或景点名称';" autocomplete="off">
+          <input name="t" type="hidden" value="scenic">
+          <%= image_tag("btn_search.png", :alt => "搜索", :class => "tc-input-image") %>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tc-header-bottom tc-container">
+  <div class="tc-center-container">
+    <div class="tc-left">
+      <ul class="tc-nav-list">
+        <li><%= link_to '首页', root_path %></li>
+        <li class="tc-line">|</li>
+        <li><%= link_to '全部计划', plans_path %></li>
+        <li class="tc-line">|</li>
+        <li><%= link_to '我的计划', personal_plans_path %></li>	
+        <li class="tc-line">|</li>
+        <li><a title="我的旅行备忘" href="/mynotes/">我的备忘</a></li>	
+        <li class="tc-line">|</li>
+        <li><%= link_to '创建计划', new_plan_path %></li>
+      </ul>
+    </div>
+    <div class="tc-right"><span class="tc-slogan"><a class="wizard-nav-link" title="帮你推荐好玩的地方!" href="/start/">还没想好去哪？</a></span></div>
+  </div>
+</div>

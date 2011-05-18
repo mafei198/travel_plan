@@ -16,11 +16,11 @@
 #
 
 class Plan < ActiveRecord::Base
-  has_many :plan_attractions
-  has_many :attractions, :through => :plan_attraction
+  has_many :plan_attractions, :dependent => :destroy
+  has_many :attractions, :through => :plan_attractions
 
-  has_many :plan_places
-  has_many :places, :through => :plan_place
+  has_many :plan_places, :dependent => :destroy
+  has_many :places, :through => :plan_places
 
   has_many :schedules
   has_many :baggage_lists

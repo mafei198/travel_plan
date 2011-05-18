@@ -13,7 +13,7 @@ class Place < ActiveRecord::Base
   has_many :attractions
   has_many :hot_places
 
-  has_many :plan_places
-  has_many :plans, :through => :plan_place
+  has_many :plan_places, :dependent => :destroy
+  has_many :plans, :through => :plan_places
 
 end

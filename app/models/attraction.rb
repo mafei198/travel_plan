@@ -13,8 +13,8 @@
 #
 
 class Attraction < ActiveRecord::Base
-  has_many :plan_attractions
-  has_many :plans, :through => :plan_attraction
+  has_many :plan_attractions, :dependent => :destroy
+  has_many :plans, :through => :plan_attractions
 
   belongs_to :place
 end

@@ -1,0 +1,46 @@
+<%= form_for(@plan) do |f| %>
+  <% if @plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
+
+      <ul>
+        <% @plan.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "旅行计划：" %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "说明："%><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :start_off_date, "目的地：" %><br />
+    <%= f.text_field :start_off_date %>
+  </div>
+  <div class="field">
+    <%= f.label :start_off_place, "出发地：" %><br />
+    <%= f.text_field :start_off_place %>
+  </div>
+  <div class="field">
+    <%= f.label :start_off_date, "出发日期：" %><br />
+    <%= f.text_field :start_off_date %>
+  </div>
+  <div class="field">
+    <%= f.label :people_num, "人数：" %><br />
+    <%= f.text_field :people_num %>
+  </div>
+  <div class="field">
+  <%= select("travel_type", "type_id", TravelType.all.collect {|type| [ type.name, type.id ] } ) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+</div>
+
+<% end %>
