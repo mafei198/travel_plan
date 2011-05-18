@@ -15,7 +15,7 @@
         <form id="_frmSearch" name="" action="" method="post" onsubmit="return chkSearch('txtKeyword','输入城市或景点名称');">
           <input name="k" id="_txtKeyword" size="36" class="tc-input-keyword" value="输入城市或景点名称" onclick="javascript:if(this.value == '输入城市或景点名称') this.value = '';" onblur="javascript:if(this.value == '') this.value = '输入城市或景点名称';" autocomplete="off">
           <input name="t" type="hidden" value="scenic">
-          <%= image_tag("btn_search.png", :alt => "搜索", :class => "tc-input-image") %>
+          <%= link_to image_tag("btn_search.png", :alt => "搜索", :class => "tc-input-image") %>
         </form>
       </div>
     </div>
