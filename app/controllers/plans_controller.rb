@@ -1,4 +1,5 @@
 class PlansController < ApplicationController
+  autocomplete :place, :name
   before_filter :authenticate_user!, :except => [:index]
 
   # GET /plans

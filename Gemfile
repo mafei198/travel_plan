@@ -1,10 +1,20 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
+
+#model注释
 gem 'annotate-models'
+
+#登录、注册
 gem 'devise'
+
 gem 'calendar_date_select'
+
+#jquery-ujs
 gem 'jquery-rails','>=1.0.3'
+
+#jquery的自动补齐
+gem 'rails3-jquery-autocomplete'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

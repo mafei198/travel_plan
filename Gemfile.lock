@@ -64,6 +64,9 @@ GEM
       activesupport (= 3.0.7)
       bundler (~> 1.0)
       railties (= 3.0.7)
+    rails3-jquery-autocomplete (0.7.3)
+      rails (~> 3.0.0)
+      yajl-ruby
     railties (3.0.7)
       actionpack (= 3.0.7)
       activesupport (= 3.0.7)
@@ -77,6 +80,7 @@ GEM
     tzinfo (0.3.27)
     warden (1.0.4)
       rack (>= 1.0)
+    yajl-ruby (0.8.2)
 
 PLATFORMS
   ruby
@@ -87,4 +91,5 @@ DEPENDENCIES
   devise
   jquery-rails (>= 1.0.3)
   rails (= 3.0.7)
+  rails3-jquery-autocomplete
   sqlite3

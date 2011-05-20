@@ -22,6 +22,7 @@
   <div class="field">
     <%= f.label :start_off_date, "目的地：" %><br />
     <%= f.text_field :start_off_date %>
+    <%= f.autocomplete_field :place_name, plans_autocomplete_place_name_path %>
   </div>
   <div class="field">
     <%= f.label :start_off_place, "出发地：" %><br />
