@@ -4,6 +4,7 @@ gem 'rails', '3.0.7'
 gem 'annotate-models'
 gem 'devise'
 gem 'calendar_date_select'
+gem 'jquery-rails','>=1.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

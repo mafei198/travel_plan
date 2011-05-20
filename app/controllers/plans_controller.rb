@@ -55,6 +55,7 @@ class PlansController < ApplicationController
   def create
     @plan = current_user.plans.new(params[:plan])
     @plan.travel_type_id = params[:travel_type][:type_id]
+    @plan.places = Place.find(params[:places])
 
     respond_to do |format|
       if @plan.save
