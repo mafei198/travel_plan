@@ -1,47 +1,47 @@
 /**
- * Unobtrusive scripting adapter for jQuery
- *
- * Requires jQuery 1.4.4 or later.
- * https://github.com/rails/jquery-ujs
+* Unobtrusive scripting adapter for jQuery
+*
+* Requires jQuery 1.4.4 or later.
+* https://github.com/rails/jquery-ujs
 
- * Uploading file using rails.js
- * =============================
- *
- * By default, browsers do not allow files to be uploaded via AJAX. As a result, if there are any non-blank file fields
- * in the remote form, this adapter aborts the AJAX submission and allows the form to submit through standard means.
- *
- * The `ajax:aborted:file` event allows you to bind your own handler to process the form submission however you wish.
- *
- * Ex:
- *     $('form').live('ajax:aborted:file', function(event, elements){
- *       // Implement own remote file-transfer handler here for non-blank file inputs passed in `elements`.
- *       // Returning false in this handler tells rails.js to disallow standard form submission
- *       return false;
- *     });
- *
- * The `ajax:aborted:file` event is fired when a file-type input is detected with a non-blank value.
- *
- * Third-party tools can use this hook to detect when an AJAX file upload is attempted, and then use
- * techniques like the iframe method to upload the file instead.
- *
- * Required fields in rails.js
- * ===========================
- *
- * If any blank required inputs (required="required") are detected in the remote form, the whole form submission
- * is canceled. Note that this is unlike file inputs, which still allow standard (non-AJAX) form submission.
- *
- * The `ajax:aborted:required` event allows you to bind your own handler to inform the user of blank required inputs.
- *
- * !! Note that Opera does not fire the form's submit event if there are blank required inputs, so this event may never
- *    get fired in Opera. This event is what causes other browsers to exhibit the same submit-aborting behavior.
- *
- * Ex:
- *     $('form').live('ajax:aborted:required', function(event, elements){
- *       // Returning false in this handler tells rails.js to submit the form anyway.
- *       // The blank required inputs are passed to this function in `elements`.
- *       return ! confirm("Would you like to submit the form with missing info?");
- *     });
- */
+* Uploading file using rails.js
+* =============================
+*
+* By default, browsers do not allow files to be uploaded via AJAX. As a result, if there are any non-blank file fields
+* in the remote form, this adapter aborts the AJAX submission and allows the form to submit through standard means.
+*
+* The `ajax:aborted:file` event allows you to bind your own handler to process the form submission however you wish.
+*
+* Ex:
+* $('form').live('ajax:aborted:file', function(event, elements){
+* // Implement own remote file-transfer handler here for non-blank file inputs passed in `elements`.
+* // Returning false in this handler tells rails.js to disallow standard form submission
+* return false;
+* });
+*
+* The `ajax:aborted:file` event is fired when a file-type input is detected with a non-blank value.
+*
+* Third-party tools can use this hook to detect when an AJAX file upload is attempted, and then use
+* techniques like the iframe method to upload the file instead.
+*
+* Required fields in rails.js
+* ===========================
+*
+* If any blank required inputs (required="required") are detected in the remote form, the whole form submission
+* is canceled. Note that this is unlike file inputs, which still allow standard (non-AJAX) form submission.
+*
+* The `ajax:aborted:required` event allows you to bind your own handler to inform the user of blank required inputs.
+*
+* !! Note that Opera does not fire the form's submit event if there are blank required inputs, so this event may never
+* get fired in Opera. This event is what causes other browsers to exhibit the same submit-aborting behavior.
+*
+* Ex:
+* $('form').live('ajax:aborted:required', function(event, elements){
+* // Returning false in this handler tells rails.js to submit the form anyway.
+* // The blank required inputs are passed to this function in `elements`.
+* return ! confirm("Would you like to submit the form with missing info?");
+* });
+*/
 
 (function($) {
   // Shorthand to make it a little easier to call public rails functions from within rails.js
@@ -156,10 +156,10 @@
     },
 
     /* Disables form elements:
-      - Caches element value in 'ujs:enable-with' data store
-      - Replaces element text with value of 'data-disable-with' attribute
-      - Adds disabled=disabled attribute
-    */
+- Caches element value in 'ujs:enable-with' data store
+- Replaces element text with value of 'data-disable-with' attribute
+- Adds disabled=disabled attribute
+*/
     disableFormElements: function(form) {
       form.find(rails.disableSelector).each(function() {
         var element = $(this), method = element.is('button') ? 'html' : 'val';
@@ -170,9 +170,9 @@
     },
 
     /* Re-enables disabled form elements:
-      - Replaces element text with cached value from 'ujs:enable-with' data store (created in `disableFormElements`)
-      - Removes disabled attribute
-    */
+- Replaces element text with cached value from 'ujs:enable-with' data store (created in `disableFormElements`)
+- Removes disabled attribute
+*/
     enableFormElements: function(form) {
       form.find(rails.enableSelector).each(function() {
         var element = $(this), method = element.is('button') ? 'html' : 'val';
@@ -181,17 +181,16 @@
       });
     },
 
-    /*
-	 For 'data-confirm' attribute:
-       - fires `confirm` event
-       - shows the confirmation dialog
-       - fires the `confirm:complete` event
+   /* For 'data-confirm' attribute:
+- Fires `confirm` event
+- Shows the confirmation dialog
+- Fires the `confirm:complete` event
 
-     Returns `true` if no function stops the chain and user chose yes; `false` otherwise.
-	 Attaching a handler to the element's `confirm` event that returns a `falsy` value cancels the confirmation dialog.
-	 Attaching a handler to the element's `confirm:complete` event that returns a `falsy` value makes this function
-	 return false.
-    */
+Returns `true` if no function stops the chain and user chose yes; `false` otherwise.
+Attaching a handler to the element's `confirm` event that returns a `falsy` value cancels the confirmation dialog.
+Attaching a handler to the element's `confirm:complete` event that returns a `falsy` value makes this function
+return false. The `confirm:complete` event is fired whether or not the user answered true or false to the dialog.
+*/
     allowAction: function(element) {
       var message = element.data('confirm'),
           answer = false, callback;
@@ -314,3 +313,5 @@
   });
 
 })( jQuery );
+
+

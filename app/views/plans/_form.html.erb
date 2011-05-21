@@ -21,8 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :start_off_date, "目的地：" %><br />
-    <%= f.text_field :start_off_date %>
-    <%= f.autocomplete_field :place_name, plans_autocomplete_place_name_path %>
+    <%= autocomplete_field_tag 'target_place', '', plans_autocomplete_place_name_path %>
   </div>
   <div class="field">
     <%= f.label :start_off_place, "出发地：" %><br />
@@ -37,7 +36,7 @@
     <%= f.text_field :people_num %>
   </div>
   <div class="field">
-  <%= select("travel_type", "type_id", TravelType.all.collect {|type| [ type.name, type.id ] } ) %>
+    <%= select("travel_type", "type_id", TravelType.all.collect {|type| [ type.name, type.id ] } ) %>
   </div>
   <div class="actions">
     <%= f.submit %>
