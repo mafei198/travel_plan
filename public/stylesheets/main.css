@@ -84,7 +84,7 @@ a.btn-traveled-1:hover { background-position:-140px -26px; color:#fff; text-deco
 a.btn-green-m {background:#fff url(/images/btn_bg.png) no-repeat left top; width:102px; text-align:center; display:inline-block; height:30px; line-height:30px; color:#fff;}
 a.btn-green-m:hover { background-position:0 -30px; color:#fff; text-decoration:none;}
 
-a.btn-blue-s {background:#fff url(/images/btn_bg_2.png) no-repeat left top; width:77px; text-align:center; display:inline-block; height:23px; line-height:23px; color:#fff;}
+a.btn-blue-s {background:#fff url(images/btn_bg_2.png) no-repeat left top; width:77px; text-align:center; display:inline-block; height:23px; line-height:23px; color:#fff;}
 a.btn-blue-s:hover { background-position:0 -23px; color:#fff; text-decoration:none;}
 
 a.btn-blue-sx {background:#fff url(/images/btn_blue_sx.png) no-repeat left top; width:62px; text-align:center; display:inline-block; height:23px; line-height:23px; color:#fff;}
@@ -729,9 +729,7 @@ ul.line li {float:left;margin-right:5px;}
 #main,#main_full{float:left;padding:5px; padding-left:10px;background:#fff; border:1px solid #e0e0e0; border-top:none;}
 
 .btn_big {border:1px solid #668800; background:#99cc00; color:#fff; line-height:26px; width:70px; height:26px; text-align:center; cursor:pointer; padding:0;}
-
-.btn {border:0;background:url(/images/btn_b.png) no-repeat left top;line-height:26px; width:82px; height:26px; text-align:center; cursor:pointer; color:#fff;padding:0;}
-
+.btn {border:0;background:url(images/btn_b.png) no-repeat left top;line-height:26px; width:82px; height:26px; text-align:center; cursor:pointer; color:#fff;padding:0;float:left;margin:2px;}
 .btn_def { background-position:0 0px}
 .btn_def_hv { background-position:0 -26px}
 .btn_gray { background-position:0 -52px; color:#515151}

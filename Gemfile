@@ -12,6 +12,9 @@ gem 'devise'
 gem 'rails3-jquery-autocomplete'
 gem 'nifty-generators'
 
+#客户端输入验证
+gem 'client_side_validations'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

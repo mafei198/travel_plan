@@ -65,7 +65,7 @@ $(document).ready(function(){
 				search: function() {
 					// custom minLength
 					var term = extractLast( this.value );
-					if ( term.length < 2 ) {
+					if ( term.length < 1 ) {
 						return false;
 					}
 				},
@@ -88,13 +88,13 @@ $(document).ready(function(){
 						if ($(this).attr('id_element')) {
 							$($(this).attr('id_element')).val(ui.item.id);
 						}
-                        if ($(this).attr('data-update-elements')) {
-                            var data = $(this).data(ui.item.id.toString());
-                            var update_elements = $.parseJSON($(this).attr("data-update-elements"));
-                            for (var key in update_elements) {
-                                $(update_elements[key]).val(data[key]);
-                            }
-                        }
+                                                if ($(this).attr('data-update-elements')) {
+                                                    var data = $(this).data(ui.item.id.toString());
+                                                    var update_elements = $.parseJSON($(this).attr("data-update-elements"));
+                                                    for (var key in update_elements) {
+                                                        $(update_elements[key]).val(data[key]);
+                                                    }
+                                                }
 					}
 					$(this).trigger('railsAutocomplete.select');
 

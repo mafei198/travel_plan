@@ -1,5 +1,220 @@
 <p id="notice"><%= notice %></p>
+<div>
+  <ul class="tc-nav-listb">
+    <li>您的位置：</li>
+    <li><a href="http://www.lvren.cn" title="旅人网">旅人网</a></li>
+    <li class="tc-line">»</li>
+    <li><a href="/" title="旅人旅游目的地">目的地</a></li>
+    <li class="tc-line">»</li>
+    <li><a href="/plan/522555/" title="法国撒的">法国撒的</a></li>
+  </ul>    
+</div>
+
+<h1><%= @plan.name %></h1>
+
+<div class="sbox">
+
+  <div class="sbody sbg">
+
+    <div class="left" style="margin:0 10px 10px 0; text-align:center;">
+
+      <div style="border:#e0e0e0 1px solid;background:#F5F5F5; text-align:center; width:160px; height:160px; ">
+        <div style="margin-top:65px;">
+          <a href="/index.php?act=plan.logo&amp;id=522555" class="blue uline">添加封面</a>
+        </div>
+      </div>
+    </div>
 
 
-<%= link_to 'Edit', edit_plan_path(@plan) %> |
-<%= link_to 'Back', plans_path %>
+    <div class="left" style="width:360px; padding-top:-10px;">
+
+
+      <div>从&nbsp;<%= @plan.start_off_place %>&nbsp;出发</div>
+
+      <div style="color:#999999;margin:5px 0;">
+        <%= @plan.description %>
+      </div>
+
+      <%= link_to '编辑概要', edit_plan_path(@plan), :class => "btn-blue-s" %>
+      <a href="/myplan/522555" class="btn-blue-s">安排日程</a>
+      <a href="/plan/iprint/522555" class="btn-blue-s">打印</a>
+      <a href="###" onclick="recyclePlan(522555);" class="gray uline">删除</a>
+
+    </div>
+
+    <div class="right" style="margin:0 20px; width:320px; border-left:#F5F5F5 1px solid; overflow:hidden; height:160px; padding-left:10px;">
+
+
+      <div class="left" style="margin-right:10px;"><img height="59" width="59" src="http://5.pic.lvren.cn/face/59_59/1284/1284246_150.jpg"></div>
+      <div class="left">
+        <div>
+          <%= link_to @plan.user.email, plan_path(@plan), :class => "blue uline", :target => "_blank" %>
+        </div>
+        <div style="line-height:2em;">
+          创建于：<%= @plan.created_at %>
+          <br>
+          <%= link_to '旅行计划', personal_plans_path(:user => @plan.user) %>
+          <a href="#" style="color:#505050;">旅行计划</a><span class="gray">(<%= @plan.user.plans.count %>)</span>&nbsp;
+          <a href="http://www.lvren.cn/track/user/uid-1284246/type-2">想去的地方</a>
+          <br>
+          <br>
+          <script language="javascript">
+            function likeThis(typename,typeid){
+
+              var likecount = $('#likecount').text();
+
+              if(likecount == '') var likecount = '0';
+
+
+              $.ajax({
+                type: "POST",
+                url:  "/index.php?act=plan.likethis",
+                data: "&typename="+typename+"&typeid="+typeid,
+                success: function(msg){
+                  if(msg == '0'){
+
+                    //alert("“喜欢”总数加1");
+
+                    var likecountjia = parseInt(likecount.replace(/\D/g,"")) + 1;
+
+                    $('#likecount').html('('+likecountjia+')');
+
+                    }else if(msg == '1'){
+                    alert("你已经提交过“喜欢”啦！");
+                  }
+                }
+              });
+            }
+          </script>   
+        </div>
+      </div>
+
+      <div class="clear"></div>
+    </div>
+
+    <hr class="gray">
+
+    <div class="clear" style="margin:5px;">
+
+
+      推荐给朋友：
+      <br>
+      <span style="border:#999 1px solid; line-height:22px; display:inline-block; padding:0 3px; width:260px; color:#999;"><%= plan_url(@plan) %></span>
+    </div>
+  </div>
+</div>
+
+<div id="main" class="new">
+
+  <div class="clear" style="margin-top:20px;"></div>
+
+  <div id="navPlanMenu">
+
+    <ul>
+      <li class="current">日程安排</li>
+      <li><a href="/plan/luggage/522555/">行李清单</a></li>
+      <li><a href="/plan/costs/522555/">旅行预算</a></li>
+      <li><a href="/plan/maps/522555/">地图</a></li>
+      <li><a href="/plan/iprint/522555/">打印版</a></li>
+    </ul>
+
+    <div class="right">
+    </div>
+
+    <div class="clear"></div>
+  </div>
+
+  <div id="days">
+  </div>
+
+  <div style="margin:5px; text-align:center; border-top:#EFEFEF 5px solid; padding-top:20px;">需要为本次旅行增加一天行程吗？
+    <br>
+    <br>
+    <a href="javascript:void(0);" onclick="plan.addDay(522555);"><img src="/images/btn_add_day.png"></a>
+  </div>
+
+
+
+
+  <div class="sbox">
+    <div class="stitle">
+      <strong>旅友评论</strong>
+    </div>
+
+    <div class="sbody">
+
+
+      <div id="comments_logo">
+        <img src="http://5.pic.lvren.cn/face/50_50/1284/1284246_150.jpg" onerror="this.src='/images/nopic_user_50_50.jpg';" height="50" width="50">
+      </div>
+
+      <div id="comments_input">
+        <form id="frmComment" name="frmComment" method="post">
+          <div class="clear">
+
+            <div>
+              <textarea id="_comment_content" name="content" cols="50" rows="3" style=" width:100%; height:60px;margin-bottom:5px;"></textarea>
+            </div>
+
+            <div class="clear">
+              <input id="_comment_submit" name="_submit" type="button" value="发表评论" class="btn btn_def" onmouseout="this.className='btn btn_def'" onmouseover="this.className='btn btn_def_hv'">
+
+            </div>
+          </div>
+          <input id="_comment_score" name="score" type="hidden" value="">
+          <input id="_comment_type" name="type" type="hidden" value="">
+          <input id="_comment_ownerid" name="ownerid" type="hidden" value="">
+          <input id="_comment_replyid" name="replyid" type="hidden" value="">
+        </form>
+
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    <!--
+    var _userid = 1284246;
+    -->
+    </script>
+    <script type="text/javascript" src="/js/comment.js"></script>
+
+  </div>
+
+  <div id="right" class="new">
+
+
+    <div class="sbox">
+      <div class="stitle">
+        <strong>我的旅行计划</strong>
+      </div>
+
+      <div class="sbody">
+        <ul class="gray-dot">
+          <li><a href="/myplan/522586/">dfsgasfsfsdf</a></li>
+          <li><a href="/myplan/522585/">1</a></li>
+          <li><a style="color:#ff6600; font-weight:bold;" href="/myplan/522555/">法国撒的</a></li>
+          <li><a href="/myplan/522519/">阿斯顿发</a></li>
+          <li><a href="/myplan/522518/">波细腻呀-旅行计划</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sbox">
+      <div class="stitle">
+        <strong>相类似旅行计划</strong>
+      </div>
+
+      <div class="sbody">
+        <ul style="line-height:2em;" class="gray-dot">
+          <li style="white-space: nowrap;text-overflow: ellipsis; "><a href="/plan/522555">法国撒的</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>

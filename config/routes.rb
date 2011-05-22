@@ -2,9 +2,10 @@ TravelPlan::Application.routes.draw do
   devise_for :users
 
   get 'personal_plans' => 'plans#personal_plans'
-  get "plans/autocomplete_place_name"
-  resources :plans do
-  end
+
+  match "autocomplete_place_name/:user" => 'plans#autocomplete_place_name'
+
+  resources :plans
 
 
   # The priority is based upon order of creation:

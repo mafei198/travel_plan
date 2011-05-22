@@ -1,4 +1,4 @@
-<%= form_for(@plan) do |f| %>
+<%= form_for(@plan, :validate => true) do |f| %>
   <% if @plan.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
@@ -11,36 +11,71 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name, "旅行计划：" %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description, "说明："%><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :start_off_date, "目的地：" %><br />
-    <%= autocomplete_field_tag 'target_place', '', plans_autocomplete_place_name_path %>
-  </div>
-  <div class="field">
-    <%= f.label :start_off_place, "出发地：" %><br />
-    <%= f.text_field :start_off_place %>
-  </div>
-  <div class="field">
-    <%= f.label :start_off_date, "出发日期：" %><br />
-    <%= f.text_field :start_off_date %>
-  </div>
-  <div class="field">
-    <%= f.label :people_num, "人数：" %><br />
-    <%= f.text_field :people_num %>
-  </div>
-  <div class="field">
-    <%= select("travel_type", "type_id", TravelType.all.collect {|type| [ type.name, type.id ] } ) %>
-  </div>
+  <ul class="stdForm">
+    <li>
+      <div class="name">旅行计划：</div>
+      <div class="content">
+        <%= f.text_field :name, :size => 50%>
+        <div class="memo">给旅行计划取个“拉轰”的名字,^_^</div>
+      </div>
+    </li>
+
+    <li>
+      <div class="name">说明：</div>
+      <div class="content">
+        <%= f.text_area :description, :rows => 5, :cols => 60%>
+        <div class="memo">推荐200~300字</div>
+      </div>
+    </li>
+
+    <li>
+      <div class="name">目的地：</div>
+      <div class="content">
+        <%= autocomplete_field_tag :target_places, '', plans_autocomplete_place_name_path, 'data-delimiter' => ',', :size => 70 %>
+      </div>
+    </li>
+
+    <li>
+      <div class="name">出发地：</div>
+      <div class="content">
+        <%= f.text_field :start_off_place, :size => 20 %>
+      </div>
+    </li>
+
+    <li>
+      <div class="name">出发日期：</div>
+      <div class="content">
+        <%= f.text_field :valid_date %>
+      </div>
+    </li>
+
+    <li>
+      <div class="name">人数：</div>
+      <div class="content">
+        <%= f.text_field :people_num, :size => 10 %>
+      </div>
+    </li>
+
+    <li>
+      <div class="name">旅行类型：</div>
+      <div class="content">
+        <%= select("travel_type", "type_id", TravelType.all.collect {|type| [ type.name, type.id ] } ) %>
+      </div>
+    </li>
+
+  <li>
+    <div class="content">
+      <div class="input">
+        <div id="btnBox">
+          <%= f.submit "保存", :class => 'btn btn_def' %>
+          <%= link_to '返回', plans_path, :class => 'btn btn_gray' %>
+        </div>
+      </div>
+    </div>
+  </li>
   <div class="actions">
-    <%= f.submit %>
   </div>
 </div>
+  </ul>
 
 <% end %>

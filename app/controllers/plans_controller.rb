@@ -1,6 +1,6 @@
 class PlansController < ApplicationController
   autocomplete :place, :name
-  before_filter :authenticate_user!, :except => [:index]
+  before_filter :authenticate_user!, :except => [:index, :personal_plans, :show]
 
   # GET /plans
   # GET /plans.xml
@@ -16,7 +16,7 @@ class PlansController < ApplicationController
   # GET /personal_plans
   # GET /personal_plans.xml
   def personal_plans
-    @plans = current_user.plans
+    @plans = User.find(params[:user]).plans
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +27,7 @@ class PlansController < ApplicationController
   # GET /plans/1
   # GET /plans/1.xml
   def show
-    @plan = current_user.plans.find(params[:id])
+    @plan = Plan.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -55,8 +55,13 @@ class PlansController < ApplicationController
   # POST /plans.xml
   def create
     @plan = current_user.plans.new(params[:plan])
+
     @plan.travel_type_id = params[:travel_type][:type_id]
-    @plan.places = Place.find(params[:places])
+
+    @plan.places = Place.find_all_by_name(params[:target_places].split(','))
+
+    year,month,day=params[:plan][:valid_date].split('/').reverse.collect(&:to_i)
+    @plan.start_off_date = Date.new(year,month,day)
 
     respond_to do |format|
       if @plan.save
