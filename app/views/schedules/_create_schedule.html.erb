@@ -1,0 +1,6 @@
+<div style="margin:5px; text-align:center; border-top:#EFEFEF 5px solid; padding-top:20px;">需要为本次旅行增加一天行程吗？
+  <br>
+  <br>
+  <% add_schedule = image_tag('/images/btn_add_day.png') %>
+  <%= link_to add_schedule, schedules_path(:id => @plan), :method => :post %>
+</div>

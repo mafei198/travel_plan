@@ -1,13 +1,15 @@
 # == Schema Information
-# Schema version: 20110517094558
+# Schema version: 20110523063153
 #
 # Table name: schedules
 #
-#  id         :integer         not null, primary key
-#  plan_date  :date
-#  plan_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer         not null, primary key
+#  plan_date   :date
+#  plan_id     :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  name        :string(255)
+#  description :text
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

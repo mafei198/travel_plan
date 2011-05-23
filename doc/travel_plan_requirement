@@ -14,7 +14,7 @@ model:
 
   ----has_many----
     Schedule #日程
-      字段：plan_date:date plan_id:integer
+      字段：plan_date:date plan_id:integer name:string description:text
       has_many :journeys
       belongs_to :plan
 

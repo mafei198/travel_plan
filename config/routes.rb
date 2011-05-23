@@ -3,9 +3,14 @@ TravelPlan::Application.routes.draw do
 
   get 'personal_plans' => 'plans#personal_plans'
 
-  match "autocomplete_place_name/:user" => 'plans#autocomplete_place_name'
+  get "plans/autocomplete_place_name"
 
   resources :plans
+
+  resources :schedules do
+    get 'up', :on => :member
+    get 'down', :on => :member
+  end
 
 
   # The priority is based upon order of creation:

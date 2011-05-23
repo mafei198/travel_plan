@@ -1,0 +1,44 @@
+<%= form_for(@schedule) do |f| %>
+
+  <h1>更新日程信息</h1>
+  <div class="new" id="main">
+    <div class="sbox">
+      <div class="sbody">
+        <ul class="stdForm">
+          <li>
+            <div class="name">本日标题：</div>
+            <div class="content">
+              <%= f.text_field :name, :class => "input", :maxlength => 50, :size => 50 %>
+            </div>
+          </li>
+
+          <li>
+            <div class="name">说明：</div>
+            <div class="content">
+              <div class="input">
+                <textarea id="description" rows="5" cols="60" name="description">速度发送打法斯蒂芬</textarea>
+                <%= f.text_area :description, :rows => 5, :clos => 60 %>
+              </div>
+              <div class="memo">推荐200~300字</div>
+            </div>
+          </li>
+
+          <li>
+            <div class="content">
+              <div class="input">
+                <div id="btnBox">
+                  <%= f.submit "保存", :class => 'btn btn_def' %>
+                  <%= link_to '返回', plan_path(@schedule.plan), :class => 'btn btn_gray' %>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="clear"></div>
+
+<% end %>

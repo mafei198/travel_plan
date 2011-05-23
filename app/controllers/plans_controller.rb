@@ -16,7 +16,7 @@ class PlansController < ApplicationController
   # GET /personal_plans
   # GET /personal_plans.xml
   def personal_plans
-    @plans = User.find(params[:user]).plans
+    @plans = !params[:user] ? current_user.plans : User.find(params[:user]).plans
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +26,7 @@ class PlansController < ApplicationController
 
   # GET /plans/1
   # GET /plans/1.xml
-  def show
+  def show 
     @plan = Plan.find(params[:id])
 
     respond_to do |format|
@@ -54,14 +54,8 @@ class PlansController < ApplicationController
   # POST /plans
   # POST /plans.xml
   def create
-    @plan = current_user.plans.new(params[:plan])
-
-    @plan.travel_type_id = params[:travel_type][:type_id]
-
-    @plan.places = Place.find_all_by_name(params[:target_places].split(','))
-
-    year,month,day=params[:plan][:valid_date].split('/').reverse.collect(&:to_i)
-    @plan.start_off_date = Date.new(year,month,day)
+    plan_hash = prepare_plan_data params[:plan]
+    @plan = current_user.plans.new(plan_hash)
 
     respond_to do |format|
       if @plan.save
@@ -78,9 +72,10 @@ class PlansController < ApplicationController
   # PUT /plans/1.xml
   def update
     @plan = current_user.plans.find(params[:id])
+    plan_hash = prepare_plan_data params[:plan]
 
     respond_to do |format|
-      if @plan.update_attributes(params[:plan])
+      if @plan.update_attributes(plan_hash)
         format.html { redirect_to(@plan, :notice => 'Plan was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -101,4 +96,10 @@ class PlansController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+    def prepare_plan_data(plan)
+      plan[:places] = Place.find_all_by_name(params[:plan][:places].split(','))
+      plan
+    end
 end

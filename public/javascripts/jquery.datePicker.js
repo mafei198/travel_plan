@@ -3,7 +3,7 @@
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  * .
- * $Id: jquery.datePicker.js 103 2010-09-22 08:54:28Z kelvin.luck $
+
  **/
 
 (function($){

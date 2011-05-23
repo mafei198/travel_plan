@@ -31,7 +31,11 @@
     <li>
       <div class="name">目的地：</div>
       <div class="content">
-        <%= autocomplete_field_tag :target_places, '', plans_autocomplete_place_name_path, 'data-delimiter' => ',', :size => 70 %>
+        <% if !!@plan.places %>
+          <%= f.autocomplete_field :places, plans_autocomplete_place_name_path, 'data-delimiter' => ',', :size => 70, :value => @plan.places.inject(sum=""){ |sum,p| sum+p.name+"," } %>
+        <% else %>
+          <%= f.autocomplete_field :places, plans_autocomplete_place_name_path, 'data-delimiter' => ',', :size => 70 %>
+        <% end %>
       </div>
     </li>
 
@@ -45,7 +49,11 @@
     <li>
       <div class="name">出发日期：</div>
       <div class="content">
-        <%= f.text_field :valid_date %>
+        <% if !!@plan.places %>
+          <%= f.text_field :start_off_date, :value => @plan.start_off_date.to_s %>
+        <% else %>
+          <%= f.text_field :start_off_date %>
+        <% end %>
       </div>
     </li>
 
@@ -59,23 +67,20 @@
     <li>
       <div class="name">旅行类型：</div>
       <div class="content">
-        <%= select("travel_type", "type_id", TravelType.all.collect {|type| [ type.name, type.id ] } ) %>
+        <%= select( :plan, "travel_type_id", TravelType.all.collect {|type| [ type.name, type.id ] } ) %>
       </div>
     </li>
 
-  <li>
-    <div class="content">
-      <div class="input">
-        <div id="btnBox">
-          <%= f.submit "保存", :class => 'btn btn_def' %>
-          <%= link_to '返回', plans_path, :class => 'btn btn_gray' %>
+    <li>
+      <div class="content">
+        <div class="input">
+          <div id="btnBox">
+            <%= f.submit "保存", :class => 'btn btn_def' %>
+            <%= link_to '返回', plans_path, :class => 'btn btn_gray' %>
+          </div>
         </div>
       </div>
-    </div>
-  </li>
-  <div class="actions">
-  </div>
-</div>
+    </li>
   </ul>
 
 <% end %>
