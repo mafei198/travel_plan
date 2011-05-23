@@ -12,8 +12,13 @@
 #  description :text
 #
 
+require 'lib/navigate_by_id'
 class Schedule < ActiveRecord::Base
   has_many :journeys
   belongs_to :plan
-  default_scope :order => 'schedules.plan_date ASC'
+  default_scope :order => 'schedules.id'
+
+  #Schedule.previous(instance_schedule),return previous record--smaller id's record
+  #Schedule.next(instance_schedule),return next record--bigger id's record
+  include NavigateById
 end

@@ -1,4 +1,9 @@
-plan.showDayMenu = function(id)
+showDayMenu = function(id)
 {
-$('#day_menu_' + id ).toggle();
+  $('#day_menu_' + id ).toggle();
+} 
+
+addActivity = function(dayid)
+{
+  $('#iframe_' + dayid).toggle();
 } 

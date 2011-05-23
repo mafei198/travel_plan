@@ -1,0 +1,81 @@
+<div id="day_103645">
+  <ul class="activity_list">
+    <% if @schedule.journeys != [] %>
+      <li class="li_activity" id="activity_100531514" key="100531514" style="clear:both; border-bottom:#efefef 1px solid;  height:auto;">
+        <div style="padding:3px 0;" id="activity_show_100531514">
+          <div style="text-align:center;width:100px;font-size:16px; color:#555;font-family:'微软雅黑','黑体'; overflow:hidden;" class="left">
+            <br>
+          </div>        
+          <div class="left">  
+            <div style="width:20px; text-align:center; margin-top:6px;" class="left">
+            </div>            
+            <div style="width:350px; text-align:left;" class="left">
+              <div style="font-size:20px; color:#181818;font-family:'微软雅黑';">
+                <a href="http://d.lvren.cn/lvyou/chuxiong/ailaoshan" target="_blank" class="blue" style="font-family:'微软雅黑';">哀牢</a>
+              </div>
+              <div style="color:#999999;">植被茂盛，动物种类繁多。<br>
+                开放时间：8：00-19：00<br>
+                地址：云南楚雄</div>
+              <div style="margin-top:10px;">
+                <a rel="group" onclick="return false;" title="图片：" style="width:106px;" target="_blank" class="scenic_logo zoom" href="http://d.lvren.cn/lvyou/chuxiong/ailaoshan"><img width="100" height="70" src="http://5.pic.lvren.cn/scenic/100_70/20110401/23059846_cDZhE8.jpg"></a>
+              </div>
+            </div>
+          </div>
+          <div style="width:50px; text-align:right; padding:10px 10px 0 0; color:#999999;" class="right">
+            -
+          </div>
+          <div style="width:150px; text-align:left; padding:10px 10px 0 0; color:#999999;" class="right">
+            <div id="activity_act_100531514">
+              <a title="上移" style="color:#999999;" onclick="plan.moveActivityUp(100531514);" href="javascript:void(0);">上移</a>
+              <a title="下移" style="color:#999999;" onclick="plan.moveActivityDown(100531514);" href="javascript:void(0);">下移</a>
+              &nbsp;<a style="color:#999999;" onclick="plan.showActivityMenu(100531514);" href="javascript:void(0);">操作<img align="absmiddle" src="/images/icon_ab.gif"></a>
+              &nbsp;<a style="color:#999999;" onclick="plan.showMoveMenu(100531514);" href="javascript:void(0);">移至<img align="absmiddle" src="/images/icon_ab.gif"></a>
+            </div>
+            <div style="margin-left:60px;" id="activity_menu_100531514" class="hide amenu">
+              <a onclick="plan.showActivityEdit(100531514);" href="javascript:void(0);">编辑</a>
+              <a onclick="plan.uploadImage(100531514);" href="javascript:void(0);">上传附图</a>
+              <a onclick="plan.delActivity(100531514);" href="javascript:void(0);">删除</a>
+            </div>
+            <div style="margin-left:100px;" id="move_menu_100531514" class="hide amenu">
+              <a onclick="plan.moveSelectDay('103645','103644','1','100531514');" href="javascript:void(0);">移至第1天</a>
+              <a onclick="plan.moveSelectDay('103645','103645','2','100531514');" href="javascript:void(0);">移至第2天</a>
+              <a onclick="plan.moveSelectDay('103645','103651','3','100531514');" href="javascript:void(0);">移至第3天</a>
+            </div>
+            <div class="hide" id="activity_status_100531514">
+              <img align="absmiddle" src="/images/loading.16.gif">
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div><!-- //show -->
+        <div style="background:#F2FFCA" class="hide" id="activity_edit_100531514">
+        </div>
+        <div style="height:0;" class="clear"><img height="1" src=""></div>
+      </li>
+      <li style="clear:both; border-bottom:#EFEFEF 1px solid; padding:3px 0;">
+        <div style="margin-left:50px;width:400px; text-align:center; margin-top:10px;" class="left">
+        </div>
+        <div style="width:100px; text-align:right; padding:10px 10px 0 0; color:#999999;" class="right o currency">
+          本日预算：<span class="o b currency">¥</span><span class="o b" id="day_costs_103645">0</span>
+        </div>
+        <div style="height:2px;" class="clear"><img height="1" src=""></div>
+      </li>
+    <% else %>
+      <li style="clear:both; border-bottom:#EFEFEF 1px solid; padding:3px 0;">
+        <div style="margin-left:50px;width:400px; text-align:center; margin-top:10px;" class="left">
+          <span style="color:#878787;">请点击“添加行程”按钮将城市、景点、酒点、航班、列车等加入行程安排</span>
+        </div>
+      </li>
+    <% end %>
+  </ul> 
+</div>
+
+<div id="day_footer_103768"></div>
+
+<div style="margin:5px; clear:both; margin-left:100px;">
+  <a href="javascript:void(0);" onclick="addActivity(103651);">
+    <img src="/images/btn_add_activity.png" border="0" align="absmiddle">
+  </a>             
+  <iframe id="iframe_103651" class="iframe_add_activity" src="/index.php?act=plan.activity_add&amp;dayid=103651" style="clear:both;overflow:hidden; display:none; border:#ABABAB 2px solid; width:606px; height:260px;" frameborder="0" allowtransparency="true" scrolling="no">
+  </iframe>
+</div>
+</div>

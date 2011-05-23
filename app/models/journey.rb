@@ -14,7 +14,12 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
-
+require 'lib/navigate_by_id'
 class Journey < ActiveRecord::Base
   belongs_to :schedule
+  default_scope :order => 'journeys.id ASC'
+
+  #Schedule.previous(instance_schedule),return previous record--smaller id's record
+  #Schedule.next(instance_schedule),return next record--bigger id's record
+  include NavigateById
 end

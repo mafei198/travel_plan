@@ -1,5 +1,8 @@
+require 'lib/navigate_by_id'
 class SchedulesController < ApplicationController
   before_filter :authenticate_user!
+  include SetUpDown
+  set_up_down Schedule, 'plan'
 
   def edit
     @schedule = Schedule.find(params[:id])
@@ -17,23 +20,23 @@ class SchedulesController < ApplicationController
     end
   end
 
-  def up
-    @schedule = Schedule.find(params[:id])
-    if @up_schedule = Schedule.find_by_plan_date(@schedule.plan_date.yesterday)
-      @up_schedule.update_attribute(plan_date, @schedule.plan_date)
-      @schedule.update_attribute(plan_date, @schedule.plan_date.yesterday)
-    end
-    redirect_to @schedule.plan
-  end
+  #def up
+    #@schedule = Schedule.find(params[:id])
+    #if @up_schedule = Schedule.find_by_plan_date(@schedule.plan_date.yesterday)
+      #@up_schedule.update_attribute(:plan_date, @schedule.plan_date)
+      #@schedule.update_attribute(:plan_date, @schedule.plan_date.yesterday)
+    #end
+    #redirect_to @schedule.plan
+  #end
 
-  def down
-    @schedule = Schedule.find(params[:id])
-    if @down_schedule = Schedule.find_by_plan_date(@schedule.plan_date.next)
-      @down_schedule.update_attribute(plan_date, @schedule.plan_date)
-      @schedule.update_attribute(plan_date, @schedule.plan_date.next)
-    end
-    redirect_to @schedule.plan
-  end
+  #def down
+    #@schedule = Schedule.find(params[:id])
+    #if @down_schedule = Schedule.find_by_plan_date(@schedule.plan_date.next)
+      #@down_schedule.update_attribute(:plan_date, @schedule.plan_date)
+      #@schedule.update_attribute(:plan_date, @schedule.plan_date.next)
+    #end
+    #redirect_to @schedule.plan
+  #end
 
   def create
     @plan = Plan.find(params[:id])
