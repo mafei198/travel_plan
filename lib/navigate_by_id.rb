@@ -1,30 +1,14 @@
 module NavigateById
 
-  def self.included(base)
-    base.extend         ClassMethods
-    base.class_eval do
+  def NavigateById.included(mod)
+    puts "#{self} included #{mod}"
+    mod.scope :previous, lambda { |i| {:conditions => ["#{mod.table_name}.sort_id < ?", i.sort_id], :order => "#{mod.table_name}.sort_id DESC"} }
+    mod.scope :next, lambda { |i| {:conditions => ["#{mod.table_name}.sort_id > ?", i.sort_id], :order => "#{mod.table_name}.sort_id ASC"} }
 
-    end
-    base.send :include, InstanceMethods
-  end # self.included
+  end
 
-  module ClassMethods
-    def previous(record)
-      where("id < ?", record.id).limit(1).order("id asc").first
-    end
-    def next(record)
-      where("id > ?", record.id).limit(1).order("id asc").first
-    end
-
-
-  end # ClassMethods
-
-  module InstanceMethods
-
-  end # InstanceMethods
-
-  
 end
+
 module SetUpDown
 
   def self.included(base)
@@ -36,19 +20,12 @@ module SetUpDown
   end # self.included
 
   module ClassMethods
-    def set_up_down(model, jump_to)
-      method_map = { :up => :previous, :down => :next}
-      [:up, :down].each do |name|
-        define_method(name) do
-          record = model.find(params[:id])
-          if (other_record = model.send(method_map[name], record)) != nil
-            puts":::::::::::::::::before:#{record.id}:#{record},#{other_record.id}:#{other_record}"
-            record.id, other_record.id = other_record.id, record.id
-            puts":::::::::::::::::after:#{record.id}:#{record},#{other_record.id}:#{other_record}"
-            puts record.save!
-            puts other_record.save!
-          end
-          redirect_to record.plan
+    def set_up_down(model_name)
+      action_name_to_command_name = {:up => :previous, :down => :next}
+      [:up, :down].each do |action_name|
+        define_method(action_name) do
+          record = sort_command(action_name_to_command_name[action_name], model_name)
+          redirect_to model_name == Schedule ? record.plan : record.schedules.plan
         end
       end
     end
@@ -56,6 +33,17 @@ module SetUpDown
   end # ClassMethods
 
   module InstanceMethods
+    private
+    def sort_command(command, model_name)
+      record = model_name.find(params[:id])
+      h = {:previous => :last, :next => :first}
+      if (other_record = model_name.send(command, record).send(h[command])) != nil
+        record.sort_id, other_record.sort_id = other_record.sort_id, record.sort_id
+        record.save
+        other_record.save
+      end
+      record
+    end
 
   end # InstanceMethods
 

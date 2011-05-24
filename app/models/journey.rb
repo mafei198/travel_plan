@@ -16,10 +16,16 @@
 #
 require 'lib/navigate_by_id'
 class Journey < ActiveRecord::Base
+  after_create :set_sort_id
   belongs_to :schedule
-  default_scope :order => 'journeys.id ASC'
+  default_scope :order => 'journeys.sort_id ASC'
 
   #Schedule.previous(instance_schedule),return previous record--smaller id's record
   #Schedule.next(instance_schedule),return next record--bigger id's record
   include NavigateById
+
+  private
+    def set_sort_id
+      update_attribute(:sort_id,id)
+    end
 end
