@@ -14,18 +14,18 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
-require 'lib/navigate_by_id'
 class Journey < ActiveRecord::Base
   after_create :set_sort_id
   belongs_to :schedule
   default_scope :order => 'journeys.sort_id ASC'
 
-  #Schedule.previous(instance_schedule),return previous record--smaller id's record
-  #Schedule.next(instance_schedule),return next record--bigger id's record
-  include NavigateById
-
+  def self.journey_types
+    journey_types = {'scenic' => '游玩', 'hotel' => '住宿', 'flight' => '航班', 
+                     'train' => '列车','restaurant' => '美食', 'ent' => '娱乐',
+                     'others' => '其他'}
+  end
   private
-    def set_sort_id
-      update_attribute(:sort_id,id)
-    end
+  def set_sort_id
+    update_attribute(:sort_id,id)
+  end
 end
