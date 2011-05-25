@@ -22,7 +22,7 @@ class Journey < ActiveRecord::Base
   def self.journey_types
     journey_types = {'scenic' => '游玩', 'hotel' => '住宿', 'flight' => '航班', 
                      'train' => '列车','restaurant' => '美食', 'ent' => '娱乐',
-                     'others' => '其他'}
+                     'other' => '其他'}
   end
   private
   def set_sort_id

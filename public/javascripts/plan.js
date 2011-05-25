@@ -4,6 +4,14 @@ showDayMenu = function(id)
 } 
 
 addActivity = function(dayid)
-{
-  $('#iframe_' + dayid).toggle();
+{ var x;
+  x = $('#iframe').detach();
+  $('#add_journey_'+dayid).append(x);
+  $('#iframe').toggle();
 } 
+
+function closeThis(id)
+{
+  $('#iframe').toggle();
+} 
+

@@ -357,7 +357,3 @@ function searchTrain()
     hideLoading();
   });
 }
-function closeThis(id)
-{
-  $('#iframe_' + id).toggle();
-} 
