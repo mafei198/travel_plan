@@ -1,14 +1,3 @@
-module NavigateById
-
-  def NavigateById.included(mod)
-    puts "#{self} included #{mod}"
-    mod.scope :previous, lambda { |i| {:conditions => ["#{mod.table_name}.sort_id < ?", i.sort_id], :order => "#{mod.table_name}.sort_id DESC"} }
-    mod.scope :next, lambda { |i| {:conditions => ["#{mod.table_name}.sort_id > ?", i.sort_id], :order => "#{mod.table_name}.sort_id ASC"} }
-
-  end
-
-end
-
 module SetUpDown
 
   def self.included(base)
@@ -21,7 +10,11 @@ module SetUpDown
 
   module ClassMethods
     def set_up_down(model_name)
+      model_name.scope :previous, lambda { |i| {:conditions => ["#{model_name.table_name}.sort_id < ?", i.sort_id], :order => "#{model_name.table_name}.sort_id DESC"} }
+      model_name.scope :next, lambda { |i| {:conditions => ["#{model_name.table_name}.sort_id > ?", i.sort_id], :order => "#{model_name.table_name}.sort_id ASC"} }
+
       action_name_to_command_name = {:up => :previous, :down => :next}
+
       [:up, :down].each do |action_name|
         define_method(action_name) do
           record = sort_command(action_name_to_command_name[action_name], model_name)

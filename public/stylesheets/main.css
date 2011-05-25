@@ -350,7 +350,7 @@ body.ie .hide_for_ie { display:none;}
 .amenu a:hover { display:block;background:#009900; color:#fff; text-decoration:none;}
 
 body.plan .box { margin:5px; display:none; position:relative;}
-.activity_add {position:absolute; left:0; top:0; background:#FFFFFF; width:100%; height:230px;}
+.activity_add {left:0; top:0; background:#FFFFFF; width:100%; height:230px;}
 
 .add_travel_box {position:absolute; display:none;width:400px;background:#fff; border:#409631 2px solid; padding:5px; overflow:hidden; padding:10px;}
 
