@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110523063153
+# Schema version: 20110526015814
 #
 # Table name: schedules
 #
@@ -10,6 +10,7 @@
 #  updated_at  :datetime
 #  name        :string(255)
 #  description :text
+#  sort_id     :integer
 #
 
 class Schedule < ActiveRecord::Base

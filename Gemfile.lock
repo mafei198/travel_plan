@@ -79,6 +79,7 @@ GEM
     tzinfo (0.3.27)
     warden (1.0.4)
       rack (>= 1.0)
+    will_paginate (3.0.pre2)
     yajl-ruby (0.8.2)
 
 PLATFORMS
@@ -92,3 +93,4 @@ DEPENDENCIES
   rails (= 3.0.7)
   rails3-jquery-autocomplete
   sqlite3
+  will_paginate (~> 3.0.pre2)

@@ -5,6 +5,11 @@ TravelPlan::Application.routes.draw do
 
   get "plans/autocomplete_place_name"
 
+  get 'places/get_attractions'
+  get 'places/get_china_citys'
+
+  get 'attractions/info'
+
   resources :plans
 
   resources :journeys

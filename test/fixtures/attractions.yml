@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110517094558
+# Schema version: 20110526015814
 #
 # Table name: attractions
 #
@@ -10,6 +10,7 @@
 #  address     :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  place_id    :integer
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

@@ -65,7 +65,7 @@ function iActivity(type)
     switch(type)
     {
       case 'scenic':
-        var url = '/index.php?act=plan.getScenic&id=' + id;
+        var url = '/attractions/info?id=' + id;
         break;
       case 'hotel':
         var url = '/index.php?act=plan.getHotel&id=' + id;
@@ -122,7 +122,7 @@ function iActivity(type)
     var type = this._type;
     var data = {title:'',price:'0',description:'',linktype:'',linkid:'0',content:''}
     //设置默认值
-    $('#title').val(data.title);
+    $('#title').val(data.name);
     $('#costs').val(data.price);
     $('#description').val(data.description);
     $('#linktype').val(data.linktype);

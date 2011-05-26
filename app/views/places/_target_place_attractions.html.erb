@@ -1,0 +1,22 @@
+<ul class="travel_commend_list">
+  <% @attractions.each do |attraction| %>
+    <li>
+      <%= link_to image_tag("http://5.pic.lvren.cn/scenic/80_80/20110331/23059641_hwwdpX.jpg",:width => 80, :height => 80), "#" ,:class => "logo", :target => "_blank" %>
+      <%= attraction.name  %>
+      <br/>
+      <%= link_to_function image_tag("/images/btn_add_travel_mini2.png"), "activity.add(#{attraction.id})" %>
+    </li>
+  <% end %>
+
+  <%= will_paginate @attractions, :id => 'pagination', :class => 'clear',
+    :previous_label => '上页', :next_label => '下页', :separator => '|' %>
+
+  <!--
+  下面这段JS是给will_paginate生成标签加上'data-remote'='true'用于实现will_paginate
+  ajax请求翻页
+  -->
+  <script type="text/javascript">
+    $('#pagination a').attr('data-remote', 'true');
+    </script>
+    <div style="padding:5px;border-top: 1px dashed #CCCCCC;"><strong>操作说明：</strong>点击景点图片进入查看下级包含景点，点击景点名称进入该景点最终页查看详情</div>
+  </ul>

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110517094558
+# Schema version: 20110526015814
 #
 # Table name: journeys
 #
@@ -13,6 +13,7 @@
 #  schedule_id :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  sort_id     :integer
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

@@ -15,8 +15,8 @@ gem 'nifty-generators'
 #客户端输入验证
 gem 'client_side_validations'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+#分页插件
+gem "will_paginate", "~> 3.0.pre2"
 
 gem 'sqlite3'
 

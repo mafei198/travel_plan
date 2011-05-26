@@ -15,32 +15,16 @@
 
 <div style="display: block;" class="box" id="box_scenic">
   <div style=" height:26px; border-bottom:#eaeaea 1px solid;" id="scenic_header">
-    <div style="line-height:26px;" class="left">
-      目的城市：
-      <% if places = @schedule.plan.places %>
-        <span id="planed_citys_menu">
-          <% places.each do |place| %>
-            <!-- ajax 会更新此段代码 -->
-            <%= link_to_function place.name, "getScenicSubList(#{place.id})", :class => "blue uline" %>
-          <% end %>
-        </span>
-      <% end %>
-      <%= link_to_function '更多城市', "getChinaCitys()", :class => "blue uline" %>
-    </div>
-
+    <%= render 'journeys/target_city' %>
     <div style="margin-top:-2px;" class="right">
       <input type="text" id="keyword_scenic" style="margin:0;"><input type="image" onclick="searchScenic();" style="border:none;" src="/images/btn_search.gif">
-
     </div>
   </div>
 
   <div id="scenic_home">
   </div>
 
-
-
   <div style="margin-top:5px;" class="clear" id="scenic_data">
-
     <ul class="travel_commend_list">
       <li>
         <a onclick="getScenicSubList(239840);" class="logo" href="javascript:void(0);"><img width="80" height="80" title="查看下级包含景点" onerror="this.src='/images/noimg.80.png';" src="http://5.pic.lvren.cn/scenic/80_80/20110401/23059831_TtJpkV.jpg"></a>
@@ -60,14 +44,12 @@
         <br>
         <a onclick="activity.add(3943);" href="javascript:void(0);"><img src="/images/btn_add_travel_mini2.png"></a>
       </li>
-
       <li>
         <a onclick="getScenicSubList(3938);" class="logo" href="javascript:void(0);"><img width="80" height="80" title="查看下级包含景点" onerror="this.src='/images/noimg.80.png';" src="http://5.pic.lvren.cn/scenic/80_80/20110401/23059846_cDZhE8.jpg"></a>
         <a title="访问景点详情" href="/lvyou/chuxiong/ailaoshan" class="blue" target="_blank">哀牢山</a>
         <br>
         <a onclick="activity.add(3938);" href="javascript:void(0);"><img src="/images/btn_add_travel_mini2.png"></a>
       </li>
-
     </ul>
 
     <div class="clear">
@@ -97,17 +79,7 @@
 
 <div class="box" id="box_hotel" style="display: none;">
   <div style=" height:26px; border-bottom:#eaeaea 1px solid;" id="hotel_header">
-    <div style="line-height:26px;" class="left">
-      目的城市：
-      <span id="planed_citys_menu_hotel">
-        <!-- ajax 会更新此段代码 -->
-        <a class="blue uline" onclick="hotel.home('楚雄');" href="javascript:void(0);">楚雄</a>&nbsp;&nbsp;
-        <!-- ajax 会更新此段代码 -->
-        <a class="blue uline" onclick="hotel.home('巴黎');" href="javascript:void(0);">巴黎</a>&nbsp;&nbsp;
-      </span>
-
-      <a class="blue uline" onclick="hotel.citys();" href="javascript:void(0);">更多城市&gt;&gt;</a>&nbsp;&nbsp;
-    </div>
+    <%= render 'journeys/target_city' %>
 
     <div style="margin-top:-2px;" class="right">
       <input type="text" id="keyword_hotel" style="margin:0;"><input type="image" onclick="hotel.search();" style="border:none;" src="/images/btn_search.gif">
@@ -116,14 +88,9 @@
 
 
   <!-- 酒店搜索 -->
-
-
-
   <div style="margin-top:5px; " class="clear" id="hotel_data">
     <div style="margin:20px 10px;">
-
       <div style="margin:5px;">打算在那里住？</div>
-
       <ul class="travel_commend_list">
         <li>
           <a onclick="hotel.getCityHotelTypes('楚雄');" class="logo" href="javascript:void(0);"><img width="80" height="80" onerror="this.src='/images/noimg.80.png';" src="http://5.pic.lvren.cn/scenic/80_80/20110403/23059968_OPs7jB.jpg"></a>
@@ -134,13 +101,13 @@
           <a title="巴黎" onclick="hotel.getCityHotelTypes('巴黎');" class="blue" href="javascript:void(0);">巴黎</a>
         </li>
       </ul>
-
     </div>
   </div>
 
   <div class="activity_add" id="hotel_add">
     <div class="box details" style="margin: 5px; float: left; width: 300px; overflow: hidden; display: none;" id="hotel_details"></div>
-</div>    </div>
+  </div>    
+</div>
 
 <div class="box" id="box_flight" style="display: none;">
   <!-- flight -->
@@ -222,39 +189,5 @@
 </div>
 
 <div style="margin:5px; float:left; display:none;" id="addActivity">
-  <form method="post" name="frmAdd" id="frmAdd">
-    <ul class="uf_add_activity">
-      <li>
-        <span> 标题：</span>
-        <div><input type="text" style="width:180px;" value="" id="title" name="title"><b class="o">*</b></div>
-      </li>
-
-      <li>
-        <span> 说明：</span>
-        <div><textarea onblur="this.style.height='60px';this.style.position='relative';this.style.width='180px';$('#times').show();" onfocus="$('#times').hide();this.style.height='120px';this.style.position='absolute';this.style.width='320px';" style="width:180px; height:60px; z-index:999;" id="description" name="description"></textarea></div>
-      </li>
-
-      <li>
-        <span> 时间：</span>
-        <div id="times">
-          <input type="text" style=" width:50px;margin-right:5px;" value="" id="starts" name="starts">～<input type="text" style="width:50px;margin-left:5px;" value="" id="ends" name="ends">如：08:22~12:30</div>
-      </li>
-
-      <li>
-        <span> 预算：</span>
-        <div><input type="text" style="width:50px;" value="" id="costs" name="costs">人均预算(RMB)</div>
-      </li>
-
-      <li>
-        <span></span>
-        <div>
-          <input type="button" onclick="activity.save();" onmouseover="this.className='btn btn_def_hv'" onmouseout="this.className='btn btn_def'" class="btn btn_def" value="保存" name="button">
-          <input type="button" onclick="activity.cancel();" onmouseover="this.className='btn btn_gray_hv'" onmouseout="this.className='btn btn_gray'" class="btn btn_gray" value="返回" name="button">
-        </div>
-      </li>
-    </ul>
-    <input type="hidden" value="103644" id="dayid" name="dayid">
-    <input type="hidden" value="" id="linktype" name="linktype">
-    <input type="hidden" value="" id="linkid" name="linkid">
-  </form>
+  <%= render 'journeys/add_form' %>
 </div>

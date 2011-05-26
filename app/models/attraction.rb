@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110517094558
+# Schema version: 20110526015814
 #
 # Table name: attractions
 #
@@ -10,6 +10,7 @@
 #  address     :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  place_id    :integer
 #
 
 class Attraction < ActiveRecord::Base
@@ -17,4 +18,12 @@ class Attraction < ActiveRecord::Base
   has_many :plans, :through => :plan_attractions
 
   belongs_to :place
+
+  scope :get_attractions_by, lambda{|place| attractions_belongs_to(place)}
+
+  private
+  def self.attractions_belongs_to(place)
+    where("place_id = :place_id", {:place_id => place})
+  end
+
 end
