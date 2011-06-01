@@ -6,7 +6,9 @@
   </ul>
 
   <div style="margin-right:5px; margin-top:2px;" class="right">
-    <%= link_to_function "[关闭]", "closeThis(#{@schedule.id})" %>
+    <% unless @schedule == nil %>
+      <%= link_to_function "[关闭]", "closeThis(#{@schedule.id})" %>
+    <% end %>
   </div>
   <div class="clear"></div>
 </div>

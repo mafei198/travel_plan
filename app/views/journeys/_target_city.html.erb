@@ -1,12 +1,14 @@
 <div style="line-height:26px;" class="left">
   目的城市：
-  <% if places = @schedule.plan.places %>
-    <span id="planed_citys_menu">
-      <% places.each do |place| %>
-        <!-- ajax 会更新此段代码 -->
-        <%= link_to place.name, places_get_attractions_path(:id => place.id), :class => "blue uline", :remote => true %>
-      <% end %>
-    </span>
+  <% unless @schedule == nil %>
+    <% if places = @schedule.plan.places %>
+      <span id="planed_citys_menu">
+        <% places.each do |place| %>
+          <!-- ajax 会更新此段代码 -->
+          <%= link_to place.name, places_get_attractions_path(:id => place.id), :class => "blue uline", :remote => true %>
+        <% end %>
+      </span>
+    <% end %>
   <% end %>
   <%= link_to_function '更多城市', "getChinaCitys()", :class => "blue uline" %>
 </div>
