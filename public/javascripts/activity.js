@@ -35,7 +35,7 @@ function iActivity(type)
   this.save = function ()
   {
     var type = this._type;
-    var url = '/index.php?act=plan.activity_save&type=' + type;
+    var url = '/journeys?type=' + type;
     showLoading()
       $('#linktype').val(this._type);
     $.post(url, $("#frmAdd").serialize(),function(data){
@@ -98,7 +98,7 @@ function iActivity(type)
       //此处为jquery回调，回调中是不能支持this.show函数的
       //alert(this._type + "\r\n" + this._header + "\r\n" + this._homebox + "\r\n" + this._databox + "\r\n" + this._addbox + "\r\n" + this._details);
       //设置默认值
-      $('#title').val(data.title);
+      $('#title').val(data.name);
       $('#costs').val(data.price);
       $('#description').val(data.description);
       $('#linktype').val(data.linktype);
@@ -106,12 +106,10 @@ function iActivity(type)
       if(typeof(data.starts) != 'undefined') $('#starts').val(data.starts);
       if(typeof(data.ends) != 'undefined') $('#ends').val(data.ends);
       $('#addActivity').insertBefore($('#' + type + '_details')).show();
-      $('#' + type + '_details').html(data.content).show();
-      /*
-         $('#' + type + '_header').hide();
-         $('#' + type + '_home').hide();
-         $('#' + type + '_data').hide();
-         */
+      //$('#' + type + '_details').html(data.content).show();
+      $('#' + type + '_header').hide();
+      $('#' + type + '_home').hide();
+      $('#' + type + '_data').hide();
       $('#' + type + '_add').show();
     }
     });
