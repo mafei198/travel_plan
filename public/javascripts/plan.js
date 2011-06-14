@@ -15,3 +15,9 @@ function closeThis(id)
   $('#iframe').toggle();
 } 
 
+$(document).ready(function(){
+    var url = $('#planed_citys_menu [href]:first').attr("href")
+    if(typeof(url) != 'undefined'){
+      $.get(url)
+    }
+});
