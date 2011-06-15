@@ -28,6 +28,10 @@ function iActivity(type)
     this._add = '#' + type + '_add';
     this._details = '#' + type + '_details';
   }
+  this.dayid = function(dayid)
+  {
+    this._dayid = dayid
+  }
   this.showtype = function()
   {
     alert(this._type + "\r\n" + this._header + "\r\n" + this._home + "\r\n" + this._data + "\r\n" + this._add + "\r\n" + this._details);
@@ -35,13 +39,10 @@ function iActivity(type)
   this.save = function ()
   {
     var type = this._type;
-    var url = '/journeys?type=' + type;
-<<<<<<< HEAD
-    showLoading()
-=======
-    showLoading();
->>>>>>> 572e968f2a70b67eb06975a2a18d1c8d7b15d617
-      $('#linktype').val(this._type);
+    var url = '/journeys';
+    //showLoading();
+    $('#linktype').val(this._type);
+    $('#dayid').val(this._dayid);
     $.post(url, $("#frmAdd").serialize(),function(data){
       if(data.error)
     {
@@ -58,9 +59,8 @@ function iActivity(type)
       //显示提示信息
       //tipx.show('添加成功!');
     }
-    hideLoading();
-    //显示本类的默认页面
-    $('#' + type + '_add').hide();
+    //hideLoading();
+    $('#iframe').hide();
     }, "json");
   }
   this.add = function(id)
@@ -358,4 +358,20 @@ function searchTrain()
     $('#train_data').show();
     hideLoading();
   });
+}
+
+this.addOnblur = function()
+{
+  $('#description').height(60);
+  $('#description').position('relative');
+  $('#description').width(180);
+  $('#times').show();
+}
+
+this.addOnfocus = function()
+{
+  $('#times').hide();
+  $('#description').height(120);
+  $('#description').position('absolute');
+  $('#description').width(320);
 }

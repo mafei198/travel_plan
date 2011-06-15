@@ -21,7 +21,7 @@ module SetUpDown
       [:up, :down].each do |action_name|
         define_method(action_name) do
           record = sort_command(action_name_to_command_name[action_name], model_name)
-          redirect_to model_name == Schedule ? record.plan : record.schedules.plan
+          redirect_to model_name == Schedule ? record.plan : record.schedule.plan
         end
       end
 

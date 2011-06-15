@@ -3,17 +3,15 @@
 #
 # Table name: journeys
 #
-#  id          :integer         not null, primary key
-#  name        :string(255)
-#  description :text
-#  from_to     :string(255)
-#  budget      :decimal(, )
-#  type        :string(255)
-#  type_id     :integer
-#  schedule_id :integer
-#  created_at  :datetime
-#  updated_at  :datetime
-#  sort_id     :integer
+#  id           :integer         not null, primary key
+#  name         :string(255)
+#  description  :text
+#  from_to      :string(255)
+#  budget       :decimal(, )
+#  journey_type :string(255)
+#  schedule_id  :integer
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

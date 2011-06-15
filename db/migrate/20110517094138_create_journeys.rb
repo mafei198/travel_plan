@@ -5,8 +5,7 @@ class CreateJourneys < ActiveRecord::Migration
       t.text :description
       t.string :from_to
       t.decimal :budget
-      t.string :type
-      t.integer :type_id
+      t.string :journey_type
       t.integer :schedule_id
 
       t.timestamps

@@ -27,8 +27,16 @@
     <span class="o b" id="day_costs_header_103768"></span>
   </div>
 
-  <%= render 'journeys/journey' %>
-  <% date = date.next %>
+  <div id= "day_<%= @schedule.id %>" >
+    <%= render 'journeys/journey' %>
+  </div>
+  <div id="day_footer_<%= @schedule.id %>"></div>
+
+  <div id="add_journey_<%= @schedule.id%>" style="margin:5px; clear:both; margin-left:100px;">
+    <%= link_to_function(image_tag("/images/btn_add_activity.png"), "addActivity(#{@schedule.id})", :boder => 0, :align => "absmiddle") %>
+  </div>
+</div>
+<% date = date.next %>
 <% end %>
 
 <div id="iframe" class="iframe_add_activity" style="clear: both; overflow-x: hidden; overflow-y: hidden; border-top-color: rgb(171, 171, 171); border-right-color: rgb(171, 171, 171); border-bottom-color: rgb(171, 171, 171); border-left-color: rgb(171, 171, 171); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; width: 606px; height: 260px; display: none; " >

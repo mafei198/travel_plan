@@ -489,6 +489,12 @@ ul.uf_add_activity li { clear:both;}
 ul.uf_add_activity span { float:left; margin:2px 0; width:50px; text-align:right;}
 ul.uf_add_activity div {float:left;margin:2px 0;}
 
+ul.uf_add_activity #title {width:180px;}
+ul.uf_add_activity #description {width:180px; height:60px; z-index:999;}
+ul.uf_add_activity #starts {width:50px;margin-right:5px;} 
+ul.uf_add_activity #ends {width:50px;margin-left:5px;} 
+ul.uf_add_activity #costs {width:50px;} 
+
 .selector_province { clear:both;}
 .selector_province li{ float:left;line-height:2em;}
 
