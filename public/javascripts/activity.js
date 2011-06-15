@@ -60,7 +60,10 @@ function iActivity(type)
       //tipx.show('添加成功!');
     }
     //hideLoading();
-    $('#iframe').hide();
+    $('#' + type + '_add').hide();
+    $('#' + type + '_header').show();
+    $('#' + type + '_home').show();
+    $('#' + type + '_data').show();
     }, "json");
   }
   this.add = function(id)
@@ -150,8 +153,11 @@ function iActivity(type)
   }
   this.cancel = function()
   {
-    $(this._add).hide();
-    $('#addActivity').hide();
+    var type = this._type;
+    $('#' + type + '_add').hide();
+    $('#' + type + '_header').show();
+    $('#' + type + '_home').show();
+    $('#' + type + '_data').show();
   }
 }
 /* 景点
@@ -163,9 +169,9 @@ function getPlanedScenic(page)
     $('#scenic_add').hide();
   var url = '/index.php?act=plan.getPlanedScenic&planid=' + planid + '&page=' + page;
   $('#scenic_data').load(url,function(data){
-    $('#scenic_data').show();
-    hideLoading();
-  });
+      $('#scenic_data').show();
+      hideLoading();
+      });
 }
 function getScenic(url)
 {
@@ -173,9 +179,9 @@ function getScenic(url)
   showLoading();
   $('#scenic_add').hide();
   $('#scenic_data').load(url,function(data){
-    $('#scenic_data').show();
-    hideLoading();
-  });
+      $('#scenic_data').show();
+      hideLoading();
+      });
 }
 function getScenicSubList(id)
 {
@@ -183,9 +189,9 @@ function getScenicSubList(id)
   $('#scenic_add').hide();
   var url = '/index.php?act=plan.selector&type=commend&id=' + id + '&page=1';
   $('#scenic_data').load(url,function(data){
-    $('#scenic_data').show();
-    hideLoading();
-  });
+      $('#scenic_data').show();
+      hideLoading();
+      });
 }
 function getScenicType(type,id)
 {
@@ -193,9 +199,9 @@ function getScenicType(type,id)
   $('#scenic_add').hide();
   var url = '/index.php?act=plan.selector&type=' + type + '&id=' + id + '&page=1';
   $('#scenic_data').load(url,function(data){
-    $('#scenic_data').show();
-    hideLoading();
-  });
+      $('#scenic_data').show();
+      hideLoading();
+      });
 }
 function getChinaCitys(type,id)
 {
@@ -203,9 +209,9 @@ function getChinaCitys(type,id)
   $('#scenic_add').hide();
   var url = '/index.php?act=plan.selector_citys';
   $('#scenic_data').load(url,function(data){
-    $('#scenic_data').show();
-    hideLoading();
-  });
+      $('#scenic_data').show();
+      hideLoading();
+      });
 }
 function getScenicSubCity(id)
 {
@@ -213,114 +219,114 @@ function getScenicSubCity(id)
   $('#scenic_add').hide();
   var url = '/index.php?act=plan.selector&type=subcity&id=' + id + '&page=1';
   $('#scenic_data').load(url,function(data){
-    $('#scenic_data').show();
-    hideLoading();
-  });
+      $('#scenic_data').show();
+      hideLoading();
+      });
 }
 /* 酒店
    ====================================================================================
    */
-function iHotel(){
-  this.list = function(cityname)
-  {
-    $('#hotel_details_full').hide();
-    showLoading();
-    var url = '/index.php?act=plan.selector_hotel&cityname=' + encodeURI(cityname) + '&page=1';
-    $('#hotel_data').load(url,function(data){
-      $('#hotel_data').show();
-      hideLoading();
-    });
+  function iHotel(){
+    this.list = function(cityname)
+    {
+      $('#hotel_details_full').hide();
+      showLoading();
+      var url = '/index.php?act=plan.selector_hotel&cityname=' + encodeURI(cityname) + '&page=1';
+      $('#hotel_data').load(url,function(data){
+          $('#hotel_data').show();
+          hideLoading();
+          });
+    }
+    this.getListByType = function(cityname,typeid)
+    {
+      $('#hotel_details_full').hide();
+      showLoading();
+      var url = '/index.php?act=plan.selector_hotel&typeid=' + typeid + '&cityname=' + encodeURI(cityname) + '&page=1';
+      $('#hotel_data').load(url,function(data){
+          $('#hotel_data').show();
+          hideLoading();
+          });
+    }
+    this.home = function(cityname)
+    {
+      $('#hotel_details_full').hide();
+      showLoading();
+      var url = '/index.php?act=plan.getHotelCityHome&cityname=' + encodeURI(cityname);
+      $('#hotel_data').load(url,function(data){
+          $('#hotel_data').show();
+          hideLoading();
+          });
+    }
+    //BY QINIAO 2010-12-21
+    this.citys = function()
+    {
+      showLoading();
+      $('#hotel_add').hide();
+      var url = '/index.php?act=plan.hotel_citys';
+      $('#hotel_data').load(url,function(data){
+          $('#hotel_data').show();
+          hideLoading();
+          });
+    }
+    //BY QINIAO 2010-12-21
+    this.getHotelSubCity = function(id)
+    {
+      showLoading();
+      $('#hotel_add').hide();
+      var url = '/index.php?act=plan.hotel_citys&type=subcity&id=' + id;
+      $('#hotel_data').load(url,function(data){
+          $('#hotel_data').show();
+          hideLoading();
+          });
+    }
+    this.getCityHotelTypes = function(cityname)
+    {
+      $('#hotel_details_full').hide();
+      showLoading();
+      var url = '/index.php?act=plan.getHotelType&cityname=' + encodeURI(cityname);
+      $('#hotel_data').load(url,function(data){
+          $('#hotel_data').show();
+          hideLoading();
+          });
+    }
+    this.getListByUrl = function(url)
+    {
+      $('#hotel_details_full').hide();
+      showLoading();
+      $('#hotel_data').load(url,function(data){
+          $('#hotel_data').show();
+          hideLoading();
+          });
+    }
+    this.details = function(id)
+    {
+      var url = '/index.php?act=plan.getHotelDetails&id=' + id;
+      $('#hotel_details_full').load(url,function(data){
+          $('#hotel_data').hide();
+          $('#hotel_details_full').show();
+          hideLoading();
+          });
+    }
+    this.search = function()
+    {
+      var k = $('#keyword_hotel').val();
+      showLoading();
+      var url = '/index.php?act=plan.selector_hotel&type=search&q=' + encodeURI(k) + '&page=1';
+      $('#hotel_data').load(url,function(data){
+          $('#hotel_data').show();
+          hideLoading();
+          });
+    }
   }
-  this.getListByType = function(cityname,typeid)
-  {
-    $('#hotel_details_full').hide();
-    showLoading();
-    var url = '/index.php?act=plan.selector_hotel&typeid=' + typeid + '&cityname=' + encodeURI(cityname) + '&page=1';
-    $('#hotel_data').load(url,function(data){
-      $('#hotel_data').show();
-      hideLoading();
-    });
-  }
-  this.home = function(cityname)
-  {
-    $('#hotel_details_full').hide();
-    showLoading();
-    var url = '/index.php?act=plan.getHotelCityHome&cityname=' + encodeURI(cityname);
-    $('#hotel_data').load(url,function(data){
-      $('#hotel_data').show();
-      hideLoading();
-    });
-  }
-  //BY QINIAO 2010-12-21
-  this.citys = function()
-  {
-    showLoading();
-    $('#hotel_add').hide();
-    var url = '/index.php?act=plan.hotel_citys';
-    $('#hotel_data').load(url,function(data){
-      $('#hotel_data').show();
-      hideLoading();
-    });
-  }
-  //BY QINIAO 2010-12-21
-  this.getHotelSubCity = function(id)
-  {
-    showLoading();
-    $('#hotel_add').hide();
-    var url = '/index.php?act=plan.hotel_citys&type=subcity&id=' + id;
-    $('#hotel_data').load(url,function(data){
-      $('#hotel_data').show();
-      hideLoading();
-    });
-  }
-  this.getCityHotelTypes = function(cityname)
-  {
-    $('#hotel_details_full').hide();
-    showLoading();
-    var url = '/index.php?act=plan.getHotelType&cityname=' + encodeURI(cityname);
-    $('#hotel_data').load(url,function(data){
-      $('#hotel_data').show();
-      hideLoading();
-    });
-  }
-  this.getListByUrl = function(url)
-  {
-    $('#hotel_details_full').hide();
-    showLoading();
-    $('#hotel_data').load(url,function(data){
-      $('#hotel_data').show();
-      hideLoading();
-    });
-  }
-  this.details = function(id)
-  {
-    var url = '/index.php?act=plan.getHotelDetails&id=' + id;
-    $('#hotel_details_full').load(url,function(data){
-      $('#hotel_data').hide();
-      $('#hotel_details_full').show();
-      hideLoading();
-    });
-  }
-  this.search = function()
-  {
-    var k = $('#keyword_hotel').val();
-    showLoading();
-    var url = '/index.php?act=plan.selector_hotel&type=search&q=' + encodeURI(k) + '&page=1';
-    $('#hotel_data').load(url,function(data){
-      $('#hotel_data').show();
-      hideLoading();
-    });
-  }
-}
 function searchScenic()
 {
   var k = $('#keyword_scenic').val();
   showLoading();
   var url = '/index.php?act=plan.selector&type=search&q=' + encodeURI(k) + '&page=1';
   $('#scenic_data').load(url,function(data){
-    $('#scenic_data').show();
-    hideLoading();
-  });
+      $('#scenic_data').show();
+      hideLoading();
+      });
 }
 function searchHotel()
 {
@@ -342,9 +348,9 @@ function searchFlight()
   $('#flight_add').hide();
   var url = '/index.php?act=plan.selector_flight&from=' + encodeURI(from) + '&to=' + encodeURI(to);
   $('#flight_data').load(url,function(data){
-    $('#flight_data').show();
-    hideLoading();
-  });
+      $('#flight_data').show();
+      hideLoading();
+      });
 }
 function searchTrain()
 {
@@ -355,9 +361,9 @@ function searchTrain()
   var url = '/index.php?act=plan.select_train&from=' + encodeURI(from) + '&to=' + encodeURI(to);
   //var url = '/index.php?act=plan.selector_train&from=' + encodeURI(from) + '&to=' + encodeURI(to);
   $('#train_data').load(url,function(data){
-    $('#train_data').show();
-    hideLoading();
-  });
+      $('#train_data').show();
+      hideLoading();
+      });
 }
 
 this.addOnblur = function()
