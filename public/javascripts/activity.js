@@ -36,7 +36,11 @@ function iActivity(type)
   {
     var type = this._type;
     var url = '/journeys?type=' + type;
+<<<<<<< HEAD
     showLoading()
+=======
+    showLoading();
+>>>>>>> 572e968f2a70b67eb06975a2a18d1c8d7b15d617
       $('#linktype').val(this._type);
     $.post(url, $("#frmAdd").serialize(),function(data){
       if(data.error)
