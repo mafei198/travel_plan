@@ -1,34 +1,43 @@
 class JourneysController < ApplicationController
+  include JourneysHelper
   before_filter :authenticate_user!
 
   def up
-    @journey= journey.find(params[:id])
+    @journey= Journey.find(params[:id])
     schedule = @journey.schedule
     order_list = schedule.journey_order_list.to_s.split(',')
     order_list.each_with_index do |order,i|
       if order == @journey.id.to_s && i != 0
         order_list[i], order_list[i-1] = order_list[i-1], order_list[i]
-        order_list.join(',')
-        schedule.update_attribute(:journey_order_list, order_list)
+        if schedule.update_attribute(:journey_order_list, order_list.join(','))
+          render :json => {"success" => true, "swapid" => order_list[i]}
+        else
+          render :json => {"success" => false, "error" => "服务器忙请稍后再试!"}
+        end
         break
+      elsif order == @journey.id.to_s && i == 0
+          render :json => {"success" => false, "error" => "已经排在第一个了!"}
       end
     end
-    redirect_to schedule.plan
   end
 
   def down
-    @journey= journey.find(params[:id])
+    @journey= Journey.find(params[:id])
     schedule = @journey.schedule
     order_list = schedule.journey_order_list.to_s.split(',')
     order_list.each_with_index do |order,i|
       if ((order == @journey.id.to_s) && (i != (order_list.size - 1)))
         order_list[i], order_list[i+1] = order_list[i+1], order_list[i]
-        order_list.join(',')
-        schedule.update_attribute(:journey_order_list, order_list)
+        if schedule.update_attribute(:journey_order_list, order_list.join(','))
+          render :json => {"success" => true, "swapid" => order_list[i]}
+        else
+          render :json => {"success" => false, "error" => "服务器忙请稍后再试!"}
+        end
         break
+      elsif ((order == @journey.id.to_s) && (i == (order_list.size - 1)))
+          render :json => {"success" => false, "error" => "已经是最后一个了!"}
       end
     end
-    redirect_to plan
   end
 
   def go_to
@@ -36,7 +45,7 @@ class JourneysController < ApplicationController
   end
 
   def new
-    
+
   end
 
   def create
@@ -46,14 +55,14 @@ class JourneysController < ApplicationController
     @journey.description = params[:description]
     @journey.budget = params[:costs]
     @journey.from_to = params[:starts] + '~' + params[:ends]
-    @schedule = Schedule.find(params[:dayid])
     if @journey.save
+      @schedule = Schedule.find(params[:dayid])
       render :json => {
-                        "success" => true,
-                        "costs"   => @journey.budget, 
-                        "content" => render_to_string(:partial => 'journey.html', 
-                                                     :locals => {:schedule => @schedule}), 
-                        "dayid"   => @journey.schedule_id }
+        "success" => true,
+        "costs"   => schedule_costs(@schedule), 
+        "content" => render_to_string(:partial => 'journey.html', 
+                                      :locals => {:schedule => @schedule}), 
+                                      "dayid"   => @journey.schedule_id }
     else
       render :json => { "success" => false }
     end

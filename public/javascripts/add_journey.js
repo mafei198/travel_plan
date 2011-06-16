@@ -4,6 +4,7 @@ var current = 'scenic';
 var tipx	 = new iTipx();
 var activity = new iActivity(current);
 var hotel = new iHotel();
+var plan = new iPlan()
 
 showDayMenu = function(id)
 {

@@ -28,7 +28,7 @@ class Journey < ActiveRecord::Base
 
   private
   def add_journey
-    new_journey_order_list = self.schedule.journey_order_list.to_s + ",#{id.to_s}"
+    new_journey_order_list = self.schedule.journey_order_list.to_s + "#{id.to_s},"
     self.schedule.update_attribute(:journey_order_list,new_journey_order_list)
   end
   def destroy_journey

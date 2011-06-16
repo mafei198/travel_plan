@@ -61,9 +61,8 @@ function recyclePlan(id)
     });
   }
 }
-function iPlan(id)
+function iPlan()
 {
-  this._planid = id;
   this.addDay = function(id)
   {
     $('iframe.iframe_add_activity').hide();
@@ -200,5 +199,89 @@ function iPlan(id)
       });
     }
   }
+
+  this.moveActivityUp = function(id)
+  {
+    $('#activity_menu_' + id ).hide();
+    $('#activity_act_' + id ).hide();
+    $('#activity_status_' + id ).show();
+    $.getJSON("/journeys/up?id=" + id,function(data){
+        if(data.success)
+        {
+        $('#activity_' + id ).insertBefore($('#activity_' + data.swapid));
+        $('#activity_status_' + id ).hide();
+        $('#activity_act_' + id ).show();
+        }
+        else
+        {
+        $('#activity_status_' + id ).hide();
+        $('#activity_act_' + id ).show();
+        alert(data.error);
+        }
+        });
+  } 
+
+  this.moveActivityDown = function(id)
+  {
+    $('#activity_menu_' + id ).hide();
+    $('#activity_act_' + id ).hide();
+    $('#activity_status_' + id ).show();
+    $.getJSON("/journeys/down?id=" + id,function(data){
+        if(data.success)
+        {
+        $('#activity_' + id ).insertAfter($('#activity_' + data.swapid));
+        $('#activity_status_' + id ).hide();
+        $('#activity_act_' + id ).show();
+        }
+        else
+        {
+        $('#activity_status_' + id ).hide();
+        $('#activity_act_' + id ).show();
+        alert(data.error);
+        }
+        });
+  } 
+
+  this.moveScheduleUp = function(id)
+  {
+    $('#activity_menu_' + id ).hide();
+    $('#activity_act_' + id ).hide();
+    $('#activity_status_' + id ).show();
+    $.getJSON("/journeys/up?id=" + id,function(data){
+        if(data.success)
+        {
+        $('#activity_' + id ).insertBefore($('#activity_' + data.swapid));
+        $('#activity_status_' + id ).hide();
+        $('#activity_act_' + id ).show();
+        }
+        else
+        {
+        $('#activity_status_' + id ).hide();
+        $('#activity_act_' + id ).show();
+        alert(data.error);
+        }
+        });
+  } 
+
+  this.moveScheduleDown = function(id)
+  {
+    $('#activity_menu_' + id ).hide();
+    $('#activity_act_' + id ).hide();
+    $('#activity_status_' + id ).show();
+    $.getJSON("/journeys/down?id=" + id,function(data){
+        if(data.success)
+        {
+        $('#activity_' + id ).insertAfter($('#activity_' + data.swapid));
+        $('#activity_status_' + id ).hide();
+        $('#activity_act_' + id ).show();
+        }
+        else
+        {
+        $('#activity_status_' + id ).hide();
+        $('#activity_act_' + id ).show();
+        alert(data.error);
+        }
+        });
+  } 
 }
 

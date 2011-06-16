@@ -26,7 +26,7 @@
     <div style="line-height:26px; background:#F5F5F5; border-bottom:#CCCCCC 1px solid; color:#676767;" id="day_header_103768">
       &nbsp;&nbsp;日期：<%= date.to_s %>&nbsp;&nbsp;<%= day_to_week date.wday.to_s %>
     预算：<span class="o b currency">¥</span>
-    <span class="o b" id="day_costs_header_103768"></span>
+    <span class="o b" id="day_costs_header_<%= @schedule.id %>"><%= schedule_costs @schedule %></span>
   </div>
 
   <div id= "day_<%= @schedule.id %>" >

@@ -2,8 +2,8 @@
   <% if @schedule.journeys != [] %>
     <% @ordered_journeys = order_journey(@schedule) %>
     <% @ordered_journeys.each do |journey| %>
-      <li class="li_activity" id="activity_100531514" key="100531514" style="clear:both; border-bottom:#efefef 1px solid;  height:auto;">
-        <div style="padding:3px 0;" id="activity_show_100531514">
+      <li class="li_activity" id="activity_<%= journey.id %>" key="<%= journey.id %>" style="clear:both; border-bottom:#efefef 1px solid;  height:auto;">
+        <div style="padding:3px 0;" id="activity_show_<%= journey.id %>">
           <div style="text-align:center;width:100px;font-size:16px; color:#555;font-family:'微软雅黑','黑体'; overflow:hidden;" class="left">
             <br>
           </div>        
@@ -25,29 +25,29 @@
             -
           </div>
           <div style="width:150px; text-align:left; padding:10px 10px 0 0; color:#999999;" class="right">
-            <div id="activity_act_100531514">
-              <%= link_to '上移', up_journey_path(journey) %>
-              <%= link_to '下移', down_journey_path(journey) %>
-              &nbsp;<a style="color:#999999;" onclick="plan.showActivityMenu(100531514);" href="javascript:void(0);">操作<img align="absmiddle" src="/images/icon_ab.gif"></a>
-              &nbsp;<a style="color:#999999;" onclick="plan.showMoveMenu(100531514);" href="javascript:void(0);">移至<img align="absmiddle" src="/images/icon_ab.gif"></a>
+            <div id="activity_act_<%= journey.id %>">
+              <%= link_to_function '上移', "plan.moveActivityUp(#{journey.id})" %>
+              <%= link_to_function '下移', "plan.moveActivityDown(#{journey.id})" %>
+              &nbsp;<a style="color:#999999;" onclick="plan.showActivityMenu(<%= journey.id %>);" href="javascript:void(0);">操作<img align="absmiddle" src="/images/icon_ab.gif"></a>
+              &nbsp;<a style="color:#999999;" onclick="plan.showMoveMenu(<%= journey.id %>);" href="javascript:void(0);">移至<img align="absmiddle" src="/images/icon_ab.gif"></a>
             </div>
-            <div style="margin-left:60px;" id="activity_menu_100531514" class="hide amenu">
-              <a onclick="plan.showActivityEdit(100531514);" href="javascript:void(0);">编辑</a>
-              <a onclick="plan.uploadImage(100531514);" href="javascript:void(0);">上传附图</a>
-              <a onclick="plan.delActivity(100531514);" href="javascript:void(0);">删除</a>
+            <div style="margin-left:60px;" id="activity_menu_<%= journey.id %>" class="hide amenu">
+              <a onclick="plan.showActivityEdit(<%= journey.id %>);" href="javascript:void(0);">编辑</a>
+              <a onclick="plan.uploadImage(<%= journey.id %>);" href="javascript:void(0);">上传附图</a>
+              <a onclick="plan.delActivity(<%= journey.id %>);" href="javascript:void(0);">删除</a>
             </div>
-            <div style="margin-left:100px;" id="move_menu_100531514" class="hide amenu">
+            <div style="margin-left:100px;" id="move_menu_<%= journey.id %>" class="hide amenu">
               <a onclick="plan.moveSelectDay('103645','103644','1','100531514');" href="javascript:void(0);">移至第1天</a>
               <a onclick="plan.moveSelectDay('103645','103645','2','100531514');" href="javascript:void(0);">移至第2天</a>
               <a onclick="plan.moveSelectDay('103645','103651','3','100531514');" href="javascript:void(0);">移至第3天</a>
             </div>
-            <div class="hide" id="activity_status_100531514">
+            <div class="hide" id="activity_status_<%= journey.id %>">
               <img align="absmiddle" src="/images/loading.16.gif">
             </div>
           </div>
           <div class="clear"></div>
         </div><!-- //show -->
-        <div style="background:#F2FFCA" class="hide" id="activity_edit_100531514">
+        <div style="background:#F2FFCA" class="hide" id="activity_edit_<%= journey.id %>">
         </div>
         <div style="height:0;" class="clear"><img height="1" src=""></div>
       </li>
@@ -56,7 +56,7 @@
       <div style="margin-left:50px;width:400px; text-align:center; margin-top:10px;" class="left">
       </div>
       <div style="width:100px; text-align:right; padding:10px 10px 0 0; color:#999999;" class="right o currency">
-        本日预算：<span class="o b currency">¥</span><span class="o b" id="day_costs_103645">0</span>
+        本日预算：<span class="o b currency">¥</span><span class="o b" id="day_costs_<%= @schedule.id %>"><%= schedule_costs @schedule %></span>
       </div>
       <div style="height:2px;" class="clear"><img height="1" src=""></div>
     </li>

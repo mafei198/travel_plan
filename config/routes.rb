@@ -10,12 +10,12 @@ TravelPlan::Application.routes.draw do
 
   get 'attractions/info'
 
+  get 'journeys/up'
+  get 'journeys/down'
+
   resources :plans
 
-  resources :journeys do
-    get 'up', :on => :member
-    get 'down', :on => :member
-  end
+  resources :journeys
 
   resources :schedules do
     get 'up', :on => :member
