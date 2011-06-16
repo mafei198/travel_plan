@@ -1,6 +1,34 @@
 class SchedulesController < ApplicationController
   before_filter :authenticate_user!
-  set_up_down Schedule
+
+  def up
+    @schedule = Schedule.find(params[:id])
+    plan = @schedule.plan
+    order_list = plan.schedule_order_list.to_s.split(',')
+    order_list.each_with_index do |order,i|
+      if order == @schedule.id.to_s && i != 0
+        order_list[i], order_list[i-1] = order_list[i-1], order_list[i]
+        plan.update_attribute(:schedule_order_list, order_list.join(','))
+        break
+      end
+    end
+    redirect_to plan
+  end
+
+  def down
+    @schedule = Schedule.find(params[:id])
+    plan = @schedule.plan
+    order_list = plan.schedule_order_list.to_s.split(',')
+    order_list.each_with_index do |order,i|
+      if ((order == @schedule.id.to_s) && (i != (order_list.size - 1)))
+        order_list[i], order_list[i+1] = order_list[i+1], order_list[i]
+        order_list.join(',')
+        plan.update_attribute(:schedule_order_list, order_list)
+        break
+      end
+    end
+    redirect_to plan
+  end
 
   def edit
     @schedule = Schedule.find(params[:id])

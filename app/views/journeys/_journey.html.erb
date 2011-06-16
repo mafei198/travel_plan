@@ -1,6 +1,7 @@
 <ul class="activity_list">
   <% if @schedule.journeys != [] %>
-    <% @schedule.journeys.each do |journey| %>
+    <% @ordered_journeys = order_journey(@schedule) %>
+    <% @ordered_journeys.each do |journey| %>
       <li class="li_activity" id="activity_100531514" key="100531514" style="clear:both; border-bottom:#efefef 1px solid;  height:auto;">
         <div style="padding:3px 0;" id="activity_show_100531514">
           <div style="text-align:center;width:100px;font-size:16px; color:#555;font-family:'微软雅黑','黑体'; overflow:hidden;" class="left">

@@ -3,14 +3,14 @@
 #
 # Table name: schedules
 #
-#  id          :integer         not null, primary key
-#  plan_date   :date
-#  plan_id     :integer
-#  created_at  :datetime
-#  updated_at  :datetime
-#  name        :string(255)
-#  description :text
-#  sort_id     :integer
+#  id                 :integer         not null, primary key
+#  plan_date          :date
+#  plan_id            :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#  name               :string(255)
+#  description        :text
+#  journey_order_list :string(255)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

@@ -1,5 +1,7 @@
 <% date = @plan.start_off_date %>
-<% @plan.schedules.each_with_index do |@schedule, i| %>
+<% @ordered_schedules = order_schedule(@plan) %>
+<% @ordered_schedules.each_with_index do |@schedule, i| %>
+  <% puts "@ordered_schedules:#{@ordered_schedules}" %>
   <div id="days">
     <div class="plan_day_top">
       <div class="plan_day_name">第<span style="font-size:28px;"><%= i+1 %></span>天</div>

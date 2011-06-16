@@ -15,17 +15,25 @@
 #
 
 class Journey < ActiveRecord::Base
-  after_create :set_sort_id
+  after_create  :add_journey
+  after_destroy :destroy_journey
+
   belongs_to :schedule
-  default_scope :order => 'journeys.sort_id ASC'
 
   def self.journey_types
     journey_types = {'scenic' => '游玩', 'hotel' => '住宿', 'flight' => '航班', 
                      'train' => '列车','restaurant' => '美食', 'ent' => '娱乐',
                      'other' => '其他'}
   end
+
   private
-  def set_sort_id
-    update_attribute(:sort_id,id)
+  def add_journey
+    new_journey_order_list = self.schedule.journey_order_list.to_s + ",#{id.to_s}"
+    self.schedule.update_attribute(:journey_order_list,new_journey_order_list)
   end
+  def destroy_journey
+    new_journey_order_list = (self.schedule.journey_order_list.split(',') - id.to_s.to_a).join(',')
+    self.plan.update_attribute(:journey_order_list,new_journey_order_list)
+  end
+
 end

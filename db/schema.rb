@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(:version => 20110526015814) do
     t.integer  "schedule_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "sort_id"
   end
 
   create_table "places", :force => true do |t|
@@ -82,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20110526015814) do
     t.integer  "travel_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "schedule_order_list"
   end
 
   create_table "recommend_plans", :force => true do |t|
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(:version => 20110526015814) do
     t.datetime "updated_at"
     t.string   "name"
     t.text     "description"
-    t.integer  "sort_id"
+    t.string   "journey_order_list"
   end
 
   create_table "travel_types", :force => true do |t|

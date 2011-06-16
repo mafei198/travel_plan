@@ -3,24 +3,30 @@
 #
 # Table name: schedules
 #
-#  id          :integer         not null, primary key
-#  plan_date   :date
-#  plan_id     :integer
-#  created_at  :datetime
-#  updated_at  :datetime
-#  name        :string(255)
-#  description :text
-#  sort_id     :integer
+#  id                 :integer         not null, primary key
+#  plan_date          :date
+#  plan_id            :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#  name               :string(255)
+#  description        :text
+#  journey_order_list :string(255)
 #
 
 class Schedule < ActiveRecord::Base
-  after_create :set_sort_id
+  after_create :add_schedule
+  after_destroy :destroy_schedule
 
   has_many :journeys
   belongs_to :plan
-  default_scope :order => 'schedules.sort_id ASC'
 
-  def set_sort_id
-    update_attribute(:sort_id,id)
+  private
+  def add_schedule
+    new_schedule_order_list = self.plan.schedule_order_list.to_s + "#{id.to_s},"
+    self.plan.update_attribute(:schedule_order_list,new_schedule_order_list)
+  end
+  def destroy_schedule
+    new_schedule_order_list = (self.plan.schedule_order_list.split(',') - id.to_s.to_a).join(',')
+    self.plan.update_attribute(:schedule_order_list,new_schedule_order_list)
   end
 end

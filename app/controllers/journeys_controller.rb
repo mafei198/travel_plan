@@ -1,6 +1,35 @@
 class JourneysController < ApplicationController
   before_filter :authenticate_user!
-  set_up_down Journey
+
+  def up
+    @journey= journey.find(params[:id])
+    schedule = @journey.schedule
+    order_list = schedule.journey_order_list.to_s.split(',')
+    order_list.each_with_index do |order,i|
+      if order == @journey.id.to_s && i != 0
+        order_list[i], order_list[i-1] = order_list[i-1], order_list[i]
+        order_list.join(',')
+        schedule.update_attribute(:journey_order_list, order_list)
+        break
+      end
+    end
+    redirect_to schedule.plan
+  end
+
+  def down
+    @journey= journey.find(params[:id])
+    schedule = @journey.schedule
+    order_list = schedule.journey_order_list.to_s.split(',')
+    order_list.each_with_index do |order,i|
+      if ((order == @journey.id.to_s) && (i != (order_list.size - 1)))
+        order_list[i], order_list[i+1] = order_list[i+1], order_list[i]
+        order_list.join(',')
+        schedule.update_attribute(:journey_order_list, order_list)
+        break
+      end
+    end
+    redirect_to plan
+  end
 
   def go_to
 
