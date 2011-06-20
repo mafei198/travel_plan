@@ -25,6 +25,7 @@
             -
           </div>
           <div style="width:150px; text-align:left; padding:10px 10px 0 0; color:#999999;" class="right">
+        <% if current_user != nil && current_user.id == @plan.user_id %>
             <div id="activity_act_<%= journey.id %>">
               <%= link_to_function '上移', "plan.moveActivityUp(#{journey.id})" %>
               <%= link_to_function '下移', "plan.moveActivityDown(#{journey.id})" %>
@@ -45,6 +46,7 @@
               <img align="absmiddle" src="/images/loading.16.gif">
             </div>
           </div>
+        <% end %>
           <div class="clear"></div>
         </div><!-- //show -->
         <div style="background:#F2FFCA" class="hide" id="activity_edit_<%= journey.id %>">

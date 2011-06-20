@@ -16,7 +16,6 @@ module PlansHelper
     order_array = schedule.order_list.split(',')
     order_array.collect! do |order| 
       schedule.journeys.each do |journey| 
-        puts "journey.id=#{journey.id}; order.to_i=#{order.to_i}"
         if journey.id == order.to_i
           break journey
         end

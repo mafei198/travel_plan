@@ -21,8 +21,13 @@ class JourneysController < ApplicationController
 
     if @journey.save
       @schedule = Schedule.find(params[:dayid])
-      content = render_to_string(:partial => 'journey.html', 
-                                 :locals  => {:schedule => @schedule})
+      @plan = @schedule.plan
+
+      content = render_to_string(
+        :partial => 'journey.html', 
+        :locals  => {:schedule => @schedule, 
+                     :plan => @plan })
+
       render :json => {
         "success" => true,
         "costs"   => schedule_costs(@schedule), 

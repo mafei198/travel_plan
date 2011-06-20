@@ -18,7 +18,7 @@ addActivity = function(dayid)
   $('#iframe').toggle();
   activity.dayid(dayid);
   $(document).ready(function(){
-    url = $('#planed_citys_menu .blue').attr('href');
+    var url = $('#planed_citys_menu [href]:first').attr("href");
     if(typeof(url) != 'undefined'){
       $.get(url);
     }
@@ -29,13 +29,6 @@ function closeThis(id)
 {
   $('#iframe').toggle();
 } 
-
-$(document).ready(function(){
-    var url = $('#planed_citys_menu [href]:first').attr("href")
-    if(typeof(url) != 'undefined'){
-      $.get(url)
-    }
-});
 
 $(function(){
 
