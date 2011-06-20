@@ -1,0 +1,47 @@
+- form_for(@plan, :validate => true) do |f|
+  -if @plan.errors.any?
+    #error_explanation
+      %h2= pluralize(@plan.errors.count, "error")+"prohibited this plan from being saved:"
+      %ul
+        - @plan.errors.full_messages.each do |msg|
+          %li= msg
+  %ul.stdForm
+    %li
+      .name 旅行计划
+      .content
+        = f.text_field :name, :size => 50
+        .memo 给旅行计划取个“拉轰”的名字,^_^  
+    %li
+      .name 说明：
+      .content
+        = f.text_area :description, :rows => 5, :cols => 60
+        .memo 推荐200~300字
+    %li
+      .name 目的地：
+      .content
+        -if !!@plan.places
+          = f.autocomplete_field :places, plans_autocomplete_place_name_path, 'data-delimiter' => ',', :size => 70, :value => @plan.places.inject(sum=""){|sum,p| sum+p.name+","}
+        -else
+          = f.autocomplete_field :places, plans_autocomplete_place_name_path, 'data-delimiter' => ',', :size => 70
+    %li
+      .name 出发地：
+      .content= f.text_field :start_off_place, :size => 20
+    %li
+      .name 出发日期：
+      .content
+        -if !!@plan.places
+          = f.text_field :start_off_date, :value => @plan.start_off_date.to_s
+        -else
+          = f.text_field :start_off_date
+    %li
+      .name 人数：
+      .content= f.text_field :people_num, :size => 10
+    %li
+      .name 旅行类型：
+      .content= select :plan, "travel_type_id", TravelType.all.collect {|type| [ type.name, type.id ] } 
+    %li
+      .content
+        .input
+          #btnBox
+            = f.submit "保存", :class => 'btn btn_def'
+            = link_to '返回', plans_path, :class => 'btn btn_gray'
