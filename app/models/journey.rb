@@ -28,12 +28,12 @@ class Journey < ActiveRecord::Base
 
   private
   def add_journey
-    new_journey_order_list = self.schedule.journey_order_list.to_s + "#{id.to_s},"
-    self.schedule.update_attribute(:journey_order_list,new_journey_order_list)
+    new_order_list = self.schedule.order_list.to_s + "#{id.to_s},"
+    self.schedule.update_attribute(:order_list,new_order_list)
   end
   def destroy_journey
-    new_journey_order_list = (self.schedule.journey_order_list.split(',') - id.to_s.to_a).join(',')
-    self.plan.update_attribute(:journey_order_list,new_journey_order_list)
+    new_order_list = (self.schedule.order_list.split(',') - id.to_s.to_a).join(',') + ','
+    self.schedule.update_attribute(:order_list,new_order_list)
   end
 
 end

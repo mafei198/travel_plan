@@ -22,11 +22,11 @@ class Schedule < ActiveRecord::Base
 
   private
   def add_schedule
-    new_schedule_order_list = self.plan.schedule_order_list.to_s + "#{id.to_s},"
-    self.plan.update_attribute(:schedule_order_list,new_schedule_order_list)
+    new_order_list = self.plan.order_list.to_s + "#{id.to_s},"
+    self.plan.update_attribute(:order_list,new_order_list)
   end
   def destroy_schedule
-    new_schedule_order_list = (self.plan.schedule_order_list.split(',') - id.to_s.to_a).join(',')
-    self.plan.update_attribute(:schedule_order_list,new_schedule_order_list)
+    new_order_list = (self.plan.order_list.split(',') - id.to_s.to_a).join(',') + ','
+    self.plan.update_attribute(:order_list,new_order_list)
   end
 end

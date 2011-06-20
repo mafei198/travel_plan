@@ -1,43 +1,6 @@
 class SchedulesController < ApplicationController
   before_filter :authenticate_user!
-
-  def up
-    @schedule = Schedule.find(params[:id])
-    plan = @schedule.plan
-    order_list = plan.schedule_order_list.to_s.split(',')
-    order_list.each_with_index do |order,i|
-      if order == @schedule.id.to_s && i != 0
-        order_list[i], order_list[i-1] = order_list[i-1], order_list[i]
-        if plan.update_attribute(:schedule_order_list, order_list.join(','))
-          render :json => {"success" => true, "swapid" => order_list[i]}
-        else
-          render :json => {"success" => false, "error" => "服务器忙请稍后再试!"}
-        end
-        break
-      elsif order == @schedule.id.to_s && i == 0
-        render :json => {"success" => false, "error" => "已经排在第一个了!"}
-      end
-    end
-  end
-
-  def down
-    @schedule = Schedule.find(params[:id])
-    plan = @schedule.plan
-    order_list = plan.schedule_order_list.to_s.split(',')
-    order_list.each_with_index do |order,i|
-      if ((order == @schedule.id.to_s) && (i != (order_list.size - 1)))
-        order_list[i], order_list[i+1] = order_list[i+1], order_list[i]
-        if plan.update_attribute(:schedule_order_list, order_list.join(','))
-          render :json => {"success" => true, "swapid" => order_list[i]}
-        else
-          render :json => {"success" => false, "error" => "服务器忙请稍后再试!"}
-        end
-        break
-      elsif ((order == @schedule.id.to_s) && (i == (order_list.size - 1)))
-        render :json => {"success" => false, "error" => "已经排在最后一个了!"}
-      end
-    end
-  end
+  set_up_down Schedule, 'plan'
 
   def edit
     @schedule = Schedule.find(params[:id])

@@ -12,6 +12,7 @@ TravelPlan::Application.routes.draw do
 
   get 'journeys/up'
   get 'journeys/down'
+  get 'journeys/destroy'
 
   get 'schedules/up'
   get 'schedules/down'

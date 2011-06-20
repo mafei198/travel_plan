@@ -98,7 +98,7 @@ function iPlan()
   {
     $('#activity_menu_' + id ).hide();
     if(confirm('确定删除这条日程吗？')){
-      $.getJSON("/index.php?act=plan.activity_del&id=" + id,function(data){
+      $.getJSON("/journeys/destroy?id=" + id,function(data){
         if(data.success)
       {
         //$('#activity_' + id ).slideUp();
