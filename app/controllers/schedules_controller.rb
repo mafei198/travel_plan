@@ -33,8 +33,8 @@ class SchedulesController < ApplicationController
           render :json => {"success" => false, "error" => "服务器忙请稍后再试!"}
         end
         break
-      elsif order == @schedule.id.to_s && i == 0
-        render :json => {"success" => false, "error" => "已经排在第一个了!"}
+      elsif ((order == @schedule.id.to_s) && (i == (order_list.size - 1)))
+        render :json => {"success" => false, "error" => "已经排在最后一个了!"}
       end
     end
   end

@@ -13,15 +13,14 @@ TravelPlan::Application.routes.draw do
   get 'journeys/up'
   get 'journeys/down'
 
+  get 'schedules/up'
+  get 'schedules/down'
+
   resources :plans
 
   resources :journeys
 
-  resources :schedules do
-    get 'up', :on => :member
-    get 'down', :on => :member
-  end
-
+  resources :schedules
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

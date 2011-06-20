@@ -244,44 +244,63 @@ function iPlan()
 
   this.moveScheduleUp = function(id)
   {
-    $('#activity_menu_' + id ).hide();
-    $('#activity_act_' + id ).hide();
+    $('#day_menu_' + id ).hide();
+    $('#day_act_' + id ).hide();
     $('#activity_status_' + id ).show();
-    $.getJSON("/journeys/up?id=" + id,function(data){
-        if(data.success)
-        {
-        $('#activity_' + id ).insertBefore($('#activity_' + data.swapid));
-        $('#activity_status_' + id ).hide();
-        $('#activity_act_' + id ).show();
-        }
-        else
-        {
-        $('#activity_status_' + id ).hide();
-        $('#activity_act_' + id ).show();
-        alert(data.error);
-        }
-        });
+    $.getJSON("/schedules/up?id=" + id,function(data){
+      if(data.success)
+    {
+      var temp;
+      $('#schedule_' + id ).insertBefore($('#schedule_' + data.swapid));
+      //交换天数
+      temp = $('#day_count_' + id).text();
+
+      $('#day_count_' + id ).text($('#day_count_' + data.swapid).text());
+      $('#day_count_' + data.swapid).text(temp)
+      //交换日期
+      temp = $('#date_' + id).text();
+      $('#date_' + id).text($('#date_' + data.swapid).text())
+      $('#date_' + data.swapid).text(temp)
+
+      $('#activity_status_' + id ).hide();
+      $('#day_act_' + id ).show();
+    }
+      else
+    {
+      $('#activity_status_' + id ).hide();
+      $('#day_act_' + id ).show();
+      alert(data.error);
+    }
+    });
   } 
 
   this.moveScheduleDown = function(id)
   {
-    $('#activity_menu_' + id ).hide();
-    $('#activity_act_' + id ).hide();
+    $('#day_menu_' + id ).hide();
+    $('#day_act_' + id ).hide();
     $('#activity_status_' + id ).show();
-    $.getJSON("/journeys/down?id=" + id,function(data){
-        if(data.success)
-        {
-        $('#activity_' + id ).insertAfter($('#activity_' + data.swapid));
-        $('#activity_status_' + id ).hide();
-        $('#activity_act_' + id ).show();
-        }
-        else
-        {
-        $('#activity_status_' + id ).hide();
-        $('#activity_act_' + id ).show();
-        alert(data.error);
-        }
-        });
+    $.getJSON("/schedules/down?id=" + id,function(data){
+      if(data.success)
+    {
+      $('#schedule_' + id ).insertAfter($('#schedule_' + data.swapid));
+      //交换天数
+      temp = $('#day_count_' + id).text();
+      $('#day_count_' + id ).text($('#day_count_' + data.swapid).text());
+      $('#day_count_' + data.swapid).text(temp)
+      //交换日期
+      temp = $('#date_' + id).text();
+      $('#date_' + id).text($('#date_' + data.swapid).text())
+      $('#date_' + data.swapid).text(temp)
+      $('#activity_status_' + id ).hide();
+      $('#day_act_' + id ).show();
+    }
+      else
+    {
+      $('#activity_status_' + id ).hide();
+      $('#day_act_' + id ).show();
+      alert(data.error);
+    }
+    });
   } 
 }
 
