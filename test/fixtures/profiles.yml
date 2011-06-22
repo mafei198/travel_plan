@@ -1,0 +1,42 @@
+# == Schema Information
+# Schema version: 20110622093624
+#
+# Table name: profiles
+#
+#  id               :integer         not null, primary key
+#  name             :string(255)
+#  image_url        :string(255)
+#  image_url_small  :string(255)
+#  image_url_medium :string(255)
+#  birthday         :date
+#  gender           :string(255)
+#  user_id          :integer
+#  location         :string(255)
+#  url              :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  image_url: MyString
+  image_url_small: MyString
+  image_url_medium: MyString
+  birthday: 2011-06-22
+  gender: MyString
+  user_id: 1
+  location: MyString
+  url: MyString
+
+two:
+  name: MyString
+  image_url: MyString
+  image_url_small: MyString
+  image_url_medium: MyString
+  birthday: 2011-06-22
+  gender: MyString
+  user_id: 1
+  location: MyString
+  url: MyString

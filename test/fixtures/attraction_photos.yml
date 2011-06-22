@@ -1,0 +1,21 @@
+# == Schema Information
+# Schema version: 20110622094539
+#
+# Table name: attraction_photos
+#
+#  id            :integer         not null, primary key
+#  attraction_id :integer
+#  photo_id      :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  attraction_id: 1
+  photo_id: 1
+
+two:
+  attraction_id: 1
+  photo_id: 1

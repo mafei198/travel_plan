@@ -17,6 +17,9 @@ class Attraction < ActiveRecord::Base
   has_many :plan_attractions, :dependent => :destroy
   has_many :plans, :through => :plan_attractions
 
+  has_many :attraction_photos, :dependent => :destroy
+  has_many :photos, :through => :attraction_photos
+
   belongs_to :place
 
   scope :get_attractions_by, lambda{|place| attractions_belongs_to(place)}

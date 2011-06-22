@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110526015814) do
+ActiveRecord::Schema.define(:version => 20110622094539) do
+
+  create_table "attraction_photos", :force => true do |t|
+    t.integer  "attraction_id"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "attractions", :force => true do |t|
     t.string   "name"
@@ -51,6 +58,18 @@ ActiveRecord::Schema.define(:version => 20110526015814) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "remote_photo_path"
+    t.string   "remote_photo_name"
+    t.string   "image_url"
+    t.string   "processed_image"
+    t.string   "unprocessed_image"
+    t.string   "random_string"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "places", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -82,6 +101,20 @@ ActiveRecord::Schema.define(:version => 20110526015814) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "order_list"
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.string   "image_url_small"
+    t.string   "image_url_medium"
+    t.date     "birthday"
+    t.string   "gender"
+    t.integer  "user_id"
+    t.string   "location"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "recommend_plans", :force => true do |t|
