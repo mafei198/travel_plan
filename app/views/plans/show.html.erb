@@ -179,13 +179,14 @@
       </div>
       <div class="sbody">
         <ul>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/hutiaotan/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110401/23059830_EhJOxF.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/hutiaotan/" class="blue">虎跳滩土林</a>
-            </div>
-          </li>
+          <% @attractions.each do |attraction| %>
+            <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+              <div style="text-align:center;">
+                <%= link_to image_tag("http://5.pic.lvren.cn/scenic/180_100/20110401/23059830_EhJOxF.jpg", :width => 180, :height => 100), attraction, :class => "scenic_logo", :style => "width:186px; margin:auto; height:106px;" %>
+                <%= link_to attraction.name, attraction, :class => 'blue' %>
+              </div>
+            </li>
+          <% end %>
           <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
             <div style="text-align:center;">
               <a href="/lvyou/chuxiong/ailaoshan/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110401/23059846_cDZhE8.jpg" width="180" height="100"></a>
