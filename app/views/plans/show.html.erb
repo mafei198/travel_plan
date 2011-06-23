@@ -152,14 +152,13 @@
       <div class="stitle">
         <strong>我的旅行计划</strong>
       </div>
-
       <div class="sbody">
         <ul class="gray-dot">
-          <li><a href="/myplan/522586/">dfsgasfsfsdf</a></li>
-          <li><a href="/myplan/522585/">1</a></li>
-          <li><a style="color:#ff6600; font-weight:bold;" href="/myplan/522555/">法国撒的</a></li>
-          <li><a href="/myplan/522519/">阿斯顿发</a></li>
-          <li><a href="/myplan/522518/">波细腻呀-旅行计划</a></li>
+          <% @my_plans.each do |plan| %>
+            <li>
+              <%= link_to plan.name, plan %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -168,11 +167,97 @@
       <div class="stitle">
         <strong>相类似旅行计划</strong>
       </div>
-
       <div class="sbody">
         <ul style="line-height:2em;" class="gray-dot">
           <li style="white-space: nowrap;text-overflow: ellipsis; "><a href="/plan/522555">法国撒的</a></li>
         </ul>
+      </div>
+    </div>
+    <div class="sbox">
+      <div class="stitle">
+        <strong>本计划游玩项目</strong>
+      </div>
+      <div class="sbody">
+        <ul>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/hutiaotan/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110401/23059830_EhJOxF.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/hutiaotan/" class="blue">虎跳滩土林</a>
+            </div>
+          </li>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/chuxiong/ailaoshan/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110401/23059846_cDZhE8.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/chuxiong/ailaoshan/" class="blue">哀牢山</a>
+            </div>
+          </li>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/paris/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20101221/23043069_KFGzfx.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/paris/" class="blue">巴黎</a>
+            </div>
+          </li>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/gumuqun/chuxiong/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110401/23059840_0ybmgl.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/gumuqun/chuxiong/" class="blue">万家坝古墓群</a>
+            </div>
+          </li>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/huafoshan/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20090724/23025414_Q3uvV7.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/huafoshan/" class="blue">化佛山</a>
+            </div>
+          </li>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/xianggangdao/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20090402/23020061_HXDwdK.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/xianggangdao/" class="blue">香港岛</a>
+            </div>
+          </li>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/huangdaxianci/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20090402/23020078_jqMTg7.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/huangdaxianci/" class="blue">黄大仙祠</a>
+            </div>
+          </li>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/beijing/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20101201/23039046_Tle13Z.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/beijing/" class="blue">北京</a>
+            </div>
+          </li>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/798/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110309/23056548_HOD0hp.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/798/" class="blue">798艺术区</a>
+            </div>
+          </li>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/xuridongsheng/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20090403/23020463_LzWWLl.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/xuridongsheng/" class="blue">旭日东升</a>
+            </div>
+          </li>
+          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
+            <div style="text-align:center;">
+              <a href="/lvyou/taishan/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110124/23051370_BmMK6v.jpg" width="180" height="100"></a>
+
+              <a href="/lvyou/taishan/" class="blue">泰山</a>
+            </div>
+          </li>
+        </ul>        
+
       </div>
     </div>
   </div>
