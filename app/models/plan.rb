@@ -31,7 +31,8 @@ class Plan < ActiveRecord::Base
   has_many :places, :through => :plan_places
 
   has_many :schedules
-  has_many :baggage_lists
+  has_one  :baggage_lists
+
   has_many :hot_plans
   has_many :recommend_plans
 

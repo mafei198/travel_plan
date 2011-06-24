@@ -20,6 +20,11 @@ class Schedule < ActiveRecord::Base
   has_many :journeys
   belongs_to :plan
 
+  #return array which is fill with journey ids.
+  def get_journey_order
+    
+  end
+
   private
   def add_schedule
     new_order_list = self.plan.order_list.to_s + "#{id.to_s},"

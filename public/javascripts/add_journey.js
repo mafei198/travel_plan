@@ -29,6 +29,18 @@ function closeThis(id)
 {
   $('#iframe').toggle();
 } 
+$(function(){
+  $("#navPlanMenu li").click(function(){
+    var one = $("#navPlanMenu .current").attr('key');
+
+    $("#navPlanMenu li").removeClass('current');
+    $(this).addClass('current');
+    var type = $(this).attr('key');
+
+    $('#'+one).hide();
+    $('#'+type).show();
+  });
+});
 
 $(function(){
 
@@ -64,6 +76,7 @@ $(function(){
   });
 
   $('#menu_scenic').click();
+
 
 });
 

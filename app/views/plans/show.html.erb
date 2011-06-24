@@ -36,7 +36,7 @@
       <a href="/plan/iprint/522555" class="btn-blue-s">打印</a>
       <%= link_to '删除', @plan, :confirm => "确定要删除吗？", :method => :delete, :class => "gray uline" %>
     </div>
-    
+
     <div class="right" style="margin:0 20px; width:320px; border-left:#F5F5F5 1px solid; overflow:hidden; height:160px; padding-left:10px;">
       <div class="left" style="margin-right:10px;"><img height="59" width="59" src="http://5.pic.lvren.cn/face/59_59/1284/1284246_150.jpg"></div>
       <div class="left">
@@ -45,24 +45,24 @@
         </div>
         <div style="line-height:2em;">
           创建于：<%= @plan.created_at %>
-          <br>
-          <%= link_to '旅行计划', personal_plans_path(:user => @plan.user) %><span class="gray">(<%= @plan.user.plans.count %>)</span>&nbsp;
-          <a href="http://www.lvren.cn/track/user/uid-1284246/type-2">想去的地方</a>
-          <br>
-          <br>
-        </div>
+        <br>
+        <%= link_to '旅行计划', personal_plans_path(:user => @plan.user) %><span class="gray">(<%= @plan.user.plans.count %>)</span>&nbsp;
+        <a href="http://www.lvren.cn/track/user/uid-1284246/type-2">想去的地方</a>
+        <br>
+        <br>
       </div>
-      <div class="clear"></div>
     </div>
-
-    <hr class="gray">
-
-    <div class="clear" style="margin:5px;">
-      推荐给朋友：
-      <br>
-      <span style="border:#999 1px solid; line-height:22px; display:inline-block; padding:0 3px; width:260px; color:#999;"><%= plan_url(@plan) %></span>
-    </div>
+    <div class="clear"></div>
   </div>
+
+  <hr class="gray">
+
+  <div class="clear" style="margin:5px;">
+    推荐给朋友：
+    <br>
+    <span style="border:#999 1px solid; line-height:22px; display:inline-block; padding:0 3px; width:260px; color:#999;"><%= plan_url(@plan) %></span>
+  </div>
+</div>
 </div>
 
 <div id="main" class="new">
@@ -72,11 +72,11 @@
   <div id="navPlanMenu">
 
     <ul>
-      <li class="current">日程安排</li>
-      <li><a href="/plan/luggage/522555/">行李清单</a></li>
-      <li><a href="/plan/costs/522555/">旅行预算</a></li>
-      <li><a href="/plan/maps/522555/">地图</a></li>
-      <li><a href="/plan/iprint/522555/">打印版</a></li>
+      <li class="current" key="days">日程安排</li>
+      <li class="" key="baggage_list">行李清单</li>
+      <li class="" key="budget">旅行预算</li>
+      <li class="" key="map">地图</li>
+      <li class="" key="print">打印版</li>
     </ul>
 
     <div class="right">
@@ -86,14 +86,24 @@
   </div>
 
   <div id="days">
+    <%= render 'schedules/schedule' %>
+    <% if current_user != nil && current_user.id == @plan.user_id %>
+      <%= render 'schedules/create_schedule' %>
+    <% end %>
   </div>
 
-  <%= render 'schedules/schedule' %>
-  <% if current_user != nil && current_user.id == @plan.user_id %>
-    <%= render 'schedules/create_schedule' %>
-  <% end %>
+  <div id="baggage_list" style="display:none;">
+    <%= render 'baggage_list_form' %>
+  </div>
 
+  <div id="budget" style="display:none;">
+  </div>
 
+  <div id="map" style="display:none;">
+  </div>
+
+  <div id="print" style="display:none;">
+  </div>
 
   <div class="sbox">
     <div class="stitle">
@@ -150,11 +160,15 @@
 
     <div class="sbox">
       <div class="stitle">
-        <strong>我的旅行计划</strong>
+        <% if current_user != nil && current_user == @plan_user %>
+          <strong>我的旅行计划</strong>
+        <% else %>
+          <strong><%= @plan_user.email %>的旅行计划</strong>
+        <% end %>
       </div>
       <div class="sbody">
         <ul class="gray-dot">
-          <% @my_plans.each do |plan| %>
+          <% @personal_plans.each do |plan| %>
             <li>
               <%= link_to plan.name, plan %>
             </li>
@@ -173,6 +187,7 @@
         </ul>
       </div>
     </div>
+
     <div class="sbox">
       <div class="stitle">
         <strong>本计划游玩项目</strong>
@@ -182,84 +197,14 @@
           <% @attractions.each do |attraction| %>
             <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
               <div style="text-align:center;">
-                <%= link_to image_tag("http://5.pic.lvren.cn/scenic/180_100/20110401/23059830_EhJOxF.jpg", :width => 180, :height => 100), attraction, :class => "scenic_logo", :style => "width:186px; margin:auto; height:106px;" %>
-                <%= link_to attraction.name, attraction, :class => 'blue' %>
+                <%= link_to image_tag("http://5.pic.lvren.cn/scenic/180_100/20110401/23059830_EhJOxF.jpg", :width => 180, :height => 100), '#', :class => "scenic_logo", :style => "width:186px; margin:auto; height:106px;" %>
+                <%= link_to attraction.name, '#', :class => 'blue' %>
               </div>
             </li>
           <% end %>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/chuxiong/ailaoshan/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110401/23059846_cDZhE8.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/chuxiong/ailaoshan/" class="blue">哀牢山</a>
-            </div>
-          </li>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/paris/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20101221/23043069_KFGzfx.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/paris/" class="blue">巴黎</a>
-            </div>
-          </li>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/gumuqun/chuxiong/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110401/23059840_0ybmgl.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/gumuqun/chuxiong/" class="blue">万家坝古墓群</a>
-            </div>
-          </li>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/huafoshan/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20090724/23025414_Q3uvV7.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/huafoshan/" class="blue">化佛山</a>
-            </div>
-          </li>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/xianggangdao/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20090402/23020061_HXDwdK.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/xianggangdao/" class="blue">香港岛</a>
-            </div>
-          </li>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/huangdaxianci/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20090402/23020078_jqMTg7.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/huangdaxianci/" class="blue">黄大仙祠</a>
-            </div>
-          </li>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/beijing/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20101201/23039046_Tle13Z.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/beijing/" class="blue">北京</a>
-            </div>
-          </li>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/798/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110309/23056548_HOD0hp.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/798/" class="blue">798艺术区</a>
-            </div>
-          </li>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/xuridongsheng/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20090403/23020463_LzWWLl.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/xuridongsheng/" class="blue">旭日东升</a>
-            </div>
-          </li>
-          <li style="line-height:1.5em; margin-bottom:10px;list-style:none;">
-            <div style="text-align:center;">
-              <a href="/lvyou/taishan/" class="scenic_logo" style="width:186px; margin:auto; height:106px;"><img src="http://5.pic.lvren.cn/scenic/180_100/20110124/23051370_BmMK6v.jpg" width="180" height="100"></a>
-
-              <a href="/lvyou/taishan/" class="blue">泰山</a>
-            </div>
-          </li>
         </ul>        
-
       </div>
     </div>
+
   </div>
   <div class="clear"></div>

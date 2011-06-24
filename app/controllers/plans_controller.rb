@@ -31,7 +31,8 @@ class PlansController < ApplicationController
   # GET /plans/1.xml
   def show 
     @plan = Plan.find(params[:id])
-    @my_plans = current_user.plans
+    @personal_plans = Plan.find_all_by_user_id(@plan.user_id)
+    @plan_user = @plan.user
     @attractions = @plan.attractions
 
     respond_to do |format|

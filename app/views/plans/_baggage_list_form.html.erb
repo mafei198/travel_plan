@@ -1,0 +1,264 @@
+<div>
+  <%= form_tag baggage_lists_path, :remote => true do %>
+    <table width="100%">
+      <tbody>
+
+        <!---credentials--->
+        <tr>
+          <td height="30"><strong>相关证件：</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "credentials[]", "身份证" %> 身份证</td>
+          <td><%= check_box_tag "credentials[]", "机票，航空会员卡" %> 机票，航空会员卡</td>
+          <td><%= check_box_tag "credentials[]", "2寸照片2张" %> 2寸照片2张</td>
+          <td><%= check_box_tag "credentials[]", "身份证复印件" %> 身份证复印件</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "credentials[]", "人民币现金" %> 人民币现金</td>
+          <td><%= check_box_tag "credentials[]", "机场贵宾室会员证" %> 机场贵宾室会员证</td>
+          <td><%= check_box_tag "credentials[]", "亲友电话，通讯录" %> 亲友电话，通讯录</td>
+          <td><%= check_box_tag "credentials[]", "保险卡" %> 保险卡</td>
+        </tr>
+
+        <!---parapernalia--->
+        <tr>
+          <td height="30"><strong>旅行随身：</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "paraphernalia[]", "行程表、地图" %> 行程表、地图</td>
+          <td><%= check_box_tag "paraphernalia[]", "手机、充电器" %> 手机、充电器</td>
+          <td><%= check_box_tag "paraphernalia[]", "国际电话卡" %> 国际电话卡</td>
+          <td><%= check_box_tag "paraphernalia[]", "电池、充电器" %> 电池、充电器</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "paraphernalia[]", "变压器、转换插座" %> 变压器、转换插座</td>
+          <td><%= check_box_tag "paraphernalia[]", "旅游书籍" %> 旅游书籍</td>
+          <td><%= check_box_tag "paraphernalia[]", "纸、笔" %> 纸、笔</td>
+          <td><%= check_box_tag "paraphernalia[]", "CD、MP3" %> CD、MP3</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "paraphernalia[]", "笔记本电脑" %> 笔记本电脑</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!---clothes--->
+        <tr>
+          <td height="30"><strong>换洗衣物：</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "clothes[]", "睡衣" %> 睡衣</td>
+          <td><%= check_box_tag "clothes[]", "换洗内衣裤" %> 换洗内衣裤</td>
+          <td><%= check_box_tag "clothes[]", "休闲上衣、长短裤或裙" %> 休闲上衣、长短裤或裙</td>
+          <td><%= check_box_tag "clothes[]", "御寒外套" %> 御寒外套</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "clothes[]", "拖鞋、凉鞋、运动鞋" %> 拖鞋、凉鞋、运动鞋</td>
+          <td><%= check_box_tag "clothes[]", "袜子" %> 袜子</td>
+          <td><%= check_box_tag "clothes[]", "游泳衣物" %> 游泳衣物</td>
+          <td></td>
+        </tr>
+
+        <!---care_supplies--->
+        <tr>
+          <td height="30"><strong>护理用品：</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "care_supplies[]", "遮阳帽、太阳眼镜" %> 遮阳帽、太阳眼镜</td>
+          <td><%= check_box_tag "care_supplies[]", "漱洗工具、刮胡刀" %> 漱洗工具、刮胡刀</td>
+          <td><%= check_box_tag "care_supplies[]", "生理用品" %> 生理用品</td>
+          <td><%= check_box_tag "care_supplies[]", "防晒油、护唇膏" %> 防晒油、护唇膏</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "care_supplies[]", "化妆品" %> 化妆品</td>
+          <td><%= check_box_tag "care_supplies[]", "隐形眼镜用品" %> 隐形眼镜用品</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!---tools--->
+        <tr>
+          <td height="30"><strong>随行工具：</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "tools[]", "行李箱锁、钥匙" %> 行李箱锁、钥匙</td>
+          <td><%= check_box_tag "tools[]", "雨伞、雨衣、鞋套" %> 雨伞、雨衣、鞋套</td>
+          <td><%= check_box_tag "tools[]", "备用眼镜" %> 备用眼镜</td>
+          <td><%= check_box_tag "tools[]", "指甲刀、瑞士刀" %> 指甲刀、瑞士刀</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "tools[]", "闹钟、计算器" %> 闹钟、计算器</td>
+          <td><%= check_box_tag "tools[]", "吹风机" %> 吹风机</td>
+          <td><%= check_box_tag "tools[]", "塑胶袋、洗衣袋" %> 塑胶袋、洗衣袋</td>
+          <td><%= check_box_tag "tools[]", "保温（冷）袋" %> 保温（冷）袋</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "tools[]", "针线包" %> 针线包</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!---camera_equipment--->
+        <tr>
+          <td height="30"><strong>摄影器材：</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "camera_equipment[]", "胶卷" %> 胶卷</td>
+          <td><%= check_box_tag "camera_equipment[]", "照相机" %> 照相机</td>
+          <td><%= check_box_tag "camera_equipment[]", "摄像机" %> 摄像机</td>
+          <td><%= check_box_tag "camera_equipment[]", "望远镜" %> 望远镜</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "camera_equipment[]", "三脚架" %> 三脚架</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!---outdoor_equipment--->
+        <tr>
+          <td height="30"><strong>户外装备：</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "outdoor_equipment[]", "电汤勺" %> 电汤勺</td>
+          <td><%= check_box_tag "outdoor_equipment[]", "钢杯、铁碗" %> 钢杯、铁碗</td>
+          <td><%= check_box_tag "outdoor_equipment[]", "个人餐具（筷，勺）" %> 个人餐具（筷，勺）</td>
+          <td><%= check_box_tag "outdoor_equipment[]", "旅行充气枕" %> 旅行充气枕</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "outdoor_equipment[]", "登山杖" %> 登山杖</td>
+          <td><%= check_box_tag "outdoor_equipment[]", "随身袋、腰包、背包" %> 随身袋、腰包、背包</td>
+          <td><%= check_box_tag "outdoor_equipment[]", "行李绑带" %> 行李绑带</td>
+          <td><%= check_box_tag "outdoor_equipment[]", "塑胶绳" %> 塑胶绳</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "outdoor_equipment[]", "睡袋" %> 睡袋</td>
+          <td><%= check_box_tag "outdoor_equipment[]", "帐篷" %> 帐篷</td>
+          <td><%= check_box_tag "outdoor_equipment[]", "防潮垫" %> 防潮垫</td>
+          <td><%= check_box_tag "outdoor_equipment[]", "手电" %> 手电</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "outdoor_equipment[]", "指南针" %> 指南针</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!---foods--->
+        <tr>
+          <td height="30"><strong>休闲食品：</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "foods[]", "保养品" %> 保养品</td>
+          <td><%= check_box_tag "foods[]", "糖果" %> 糖果</td>
+          <td><%= check_box_tag "foods[]", "饼干" %> 饼干</td>
+          <td><%= check_box_tag "foods[]", "零食" %> 零食</td>
+        </tr>
+
+        <!---medicines--->
+        <tr>
+          <td height="30"><strong>常备药品：</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "medicines[]", "肠胃药" %> 肠胃药</td>
+          <td><%= check_box_tag "medicines[]", "止泻药" %> 止泻药</td>
+          <td><%= check_box_tag "medicines[]", "感冒药" %> 感冒药</td>
+          <td><%= check_box_tag "medicines[]", "止痛药" %> 止痛药</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "medicines[]", "晕车药" %> 晕车药</td>
+          <td><%= check_box_tag "medicines[]", "眼药水" %> 眼药水</td>
+          <td><%= check_box_tag "medicines[]", "创可贴" %> 创可贴</td>
+          <td><%= check_box_tag "medicines[]", "皮肤用药" %> 皮肤用药</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "medicines[]", "口腔药膏" %> 口腔药膏</td>
+          <td><%= check_box_tag "medicines[]", "防蚊液" %> 防蚊液</td>
+          <td><%= check_box_tag "medicines[]", "降血压药" %> 降血压药</td>
+          <td><%= check_box_tag "medicines[]", "心脏用药" %> 心脏用药</td>
+        </tr>
+
+        <tr>
+          <td><%= check_box_tag "medicines[]", "医生处方" %> 医生处方</td>
+          <td><%= check_box_tag "medicines[]", "健康证明" %> 健康证明</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!--notation-->
+        <tr>
+          <td height="30"><strong>备 注</strong></td>
+          <td></td>
+          <td><input type="hidden" value="1" name="edit"></td>
+          <td><input type="hidden" value="522518" name="planid"></td>
+        </tr>
+
+        <tr>
+          <td colspan="4">
+            <%= text_area_tag "notation", '', :style => "width:500px;height:50px;" %>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <style>
+      .create_btn{text-align:left;padding:10px 0;}
+    </style>
+
+    <div class="create_btn">
+      <%= submit_tag '保存', :style => "width:80jpx;" %>
+      <a href="/plan/luggage/522518" class="blue">返回</a></div>
+  <% end %>
+</div>
