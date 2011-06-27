@@ -1,6 +1,6 @@
 <div id="navMenu">
   <ul>
-    <% Journey.journey_types.each do |key, value| %>
+    <% Journey.link_types.each do |key, value| %>
       <li id="<%= key=='scenic' ? "menu_scenic" : key %>" class="<%= key=='scenic' ? "current" : "" %>" key="<%= key %>"><%= value %></li>
     <% end %>
   </ul>

@@ -3,7 +3,7 @@
     <li>
       <span> 标题：</span>
       <div>
-        <%= text_field_tag "title" %>
+        <%= text_field_tag "name" %>
         <b class="o">*</b>
       </div>
     </li>
@@ -35,6 +35,7 @@
       </div>
     </li>
   </ul>
-  <%= hidden_field_tag "dayid" %>
-  <%= hidden_field_tag "linktype" %>
+  <%= hidden_field_tag "schedule_id" %>
+  <%= hidden_field_tag "link_type" %>
+  <%= hidden_field_tag "link_id" %>
 <% end %>

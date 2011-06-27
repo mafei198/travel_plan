@@ -11,12 +11,12 @@ showDayMenu = function(id)
   $('#day_menu_' + id ).toggle();
 } 
 
-addActivity = function(dayid)
+addActivity = function(schedule_id)
 { var x;
   x = $('#iframe').detach();
-  $('#add_journey_'+dayid).append(x);
+  $('#add_journey_'+schedule_id).append(x);
   $('#iframe').toggle();
-  activity.dayid(dayid);
+  activity.schedule_id(schedule_id);
   $(document).ready(function(){
     var url = $('#planed_citys_menu [href]:first').attr("href");
     if(typeof(url) != 'undefined'){

@@ -13,8 +13,13 @@ module SetUpDown
       [:up, :down].each do |action_name|
         define_method(action_name) do
           record = model.find(params[:id])
+
+          #get the journey's schedule, or schedule's plan.
+          #the journeys order_list is saved in schedule.
+          #schedules order_list is saved in plan.
           order_list_model = record.send(order_list_model.to_sym)
-          order_array = order_list_model.order_list.to_s.split(',')
+          order_array = order_list_model.order_array
+
           order_array.each_with_index do |order, i|
             case action_name
             when :up

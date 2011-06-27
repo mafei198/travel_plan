@@ -37,8 +37,10 @@ ActiveRecord::Schema.define(:version => 20110623094930) do
   create_table "attractions", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "opentime"
+    t.string   "starts"
+    t.string   "ends"
     t.string   "address"
+    t.decimal  "costs"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "place_id"
@@ -65,10 +67,12 @@ ActiveRecord::Schema.define(:version => 20110623094930) do
   create_table "journeys", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "from_to"
-    t.decimal  "budget"
-    t.string   "journey_type"
+    t.string   "starts"
+    t.string   "ends"
+    t.decimal  "costs"
+    t.string   "link_type"
     t.integer  "schedule_id"
+    t.integer  "link_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

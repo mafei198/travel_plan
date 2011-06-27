@@ -3,8 +3,10 @@ class CreateAttractions < ActiveRecord::Migration
     create_table :attractions do |t|
       t.string :name
       t.text :description
-      t.string :opentime
+      t.string :starts
+      t.string :ends
       t.string :address
+      t.decimal :costs
 
       t.timestamps
     end

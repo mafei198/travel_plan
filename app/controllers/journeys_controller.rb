@@ -12,18 +12,20 @@ class JourneysController < ApplicationController
   end
 
   def create
-    @journey = Journey.new(:schedule_id => params[:dayid])
-    @journey.journey_type = params[:linktype]
-    @journey.name = params[:title]
+    @journey = Journey.new(:schedule_id => params[:schedule_id])
+    @journey.link_type = params[:link_type]
+    @journey.name = params[:name]
     @journey.description = params[:description]
-    @journey.budget = params[:costs]
-    @journey.from_to = params[:starts] + '~' + params[:ends]
+    @journey.costs = params[:costs]
+    @journey.starts = params[:starts]
+    @journey.ends = params[:ends]
+    @journey.link_id = params[:link_id]
 
     if @journey.save
-      @schedule = Schedule.find(params[:dayid])
+      @schedule = Schedule.find(params[:schedule_id])
       @plan = @schedule.plan
 
-      if @journey.journey_type == 'scenic'
+      if @journey.link_type == 'scenic'
         attraction = Attraction.find_by_name(@journey.name)
         @plan.plan_attractions.create(:attraction_id => attraction.id)
       end
@@ -35,7 +37,7 @@ class JourneysController < ApplicationController
       render :json => { "success" => true, 
                         "costs"   => schedule_costs(@schedule), 
                         "content" => content, 
-                        "dayid"   => @journey.schedule_id }
+                        "schedule_id"   => @journey.schedule_id }
     else
       render :json => { "success" => false }
     end
@@ -47,9 +49,8 @@ class JourneysController < ApplicationController
 
   def destroy
     @journey = Journey.find(params[:id])
-    if @journey.journey_type == 'scenic'
-      attraction = Attraction.find_by_name(@journey.name)
-      PlanAttraction.find_by_attraction_id(attraction.id).destroy
+    if @journey.link_type == 'scenic'
+      PlanAttraction.find_by_attraction_id(@journey.link_id).destroy
     end
     if @journey.destroy
       render :json => {:success => true}

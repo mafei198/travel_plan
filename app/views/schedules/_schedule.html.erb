@@ -1,5 +1,4 @@
 <% date = @plan.start_off_date %>
-<% @ordered_schedules = order_schedule(@plan) %>
 <% @ordered_schedules.each_with_index do |@schedule, i| %>
   <div id="schedule_<%= @schedule.id %>">
     <div class="plan_day_top">

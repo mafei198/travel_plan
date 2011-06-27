@@ -78,11 +78,11 @@ function iPlan()
     }
     });
   }
-  this.delDay = function(dayid)
+  this.delDay = function(schedule_id)
   {
-    $('#day_menu_' + dayid ).toggle();
+    $('#day_menu_' + schedule_id ).toggle();
     if(confirm('您确定要删除这天的日程吗？（请谨慎操作）')){
-      $.getJSON("/index.php?act=plan.day_del&dayid=" + dayid,function(data){
+      $.getJSON("/index.php?act=plan.day_del&schedule_id=" + schedule_id,function(data){
         if(data.success)
       {
         window.location.reload();
@@ -143,8 +143,8 @@ function iPlan()
       var s = $('#activity_show_' + id);
       var e = $('#activity_edit_' + id);
       $(s).html(data.content);
-      $('#day_costs_' + data.dayid,parent.document).html(data.costs);
-      $('#day_costs_header_' + data.dayid,parent.document).html(data.costs);
+      $('#day_costs_' + data.schedule_id,parent.document).html(data.costs);
+      $('#day_costs_header_' + data.schedule_id,parent.document).html(data.costs);
       $('#activity_status_' + id ).hide();
       $('#activity_act_' + id ).show();
       $(e).slideUp(300,function(){
@@ -184,10 +184,10 @@ function iPlan()
     $('#move_menu_' + id ).toggle();
   }
   //移动到第几天 BY QINIAO
-  this.moveSelectDay = function(fromdayid,todayid,orderid,activityid)
+  this.moveSelectDay = function(fromscheduleid,toscheduleid,orderid,activityid)
   {
     if(confirm('您确定要移动到第'+orderid+'天吗？')){
-      $.getJSON("/index.php?act=plan.moveselectday&fromdayid=" + fromdayid + "&todayid=" + todayid + "&activityid="+activityid,function(data){
+      $.getJSON("/index.php?act=plan.moveselectday&fromscheduleid=" + fromscheduleid + "&toscheduleid=" + toscheduleid + "&activityid="+activityid,function(data){
         if(data.success)
       {
         window.location.reload();

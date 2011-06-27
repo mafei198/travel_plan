@@ -3,10 +3,12 @@ class CreateJourneys < ActiveRecord::Migration
     create_table :journeys do |t|
       t.string :name
       t.text :description
-      t.string :from_to
-      t.decimal :budget
-      t.string :journey_type
+      t.string :starts
+      t.string :ends
+      t.decimal :costs
+      t.string :link_type
       t.integer :schedule_id
+      t.integer :link_id
 
       t.timestamps
     end
