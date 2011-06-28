@@ -29,15 +29,30 @@ function closeThis(id)
 {
   $('#iframe').toggle();
 } 
+
 $(function(){
   $("#navPlanMenu li").click(function(){
-    var one = $("#navPlanMenu .current").attr('key');
+    var current = $("#navPlanMenu .current").attr('key');
 
     $("#navPlanMenu li").removeClass('current');
     $(this).addClass('current');
-    var type = $(this).attr('key');
 
-    $('#'+one).hide();
+    var type = $(this).attr('key');
+    if(type == 'baggage_list' && $('#'+type).html() == ""){
+      plan_id = $("#baggage_list").attr('plan_id')
+      $.getJSON('/baggage_lists/chouse?id='+plan_id, function(data){
+        if(data.success)
+      {
+        $('#'+type).html(data.content);
+      }
+        else
+      {
+        return false;
+      }
+      });
+    }
+
+    $('#'+current).hide();
     $('#'+type).show();
   });
 });

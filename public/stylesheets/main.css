@@ -1160,3 +1160,26 @@ ul.thumbs_v144 div.thumb {margin:7px;}
 .back-to .back-top:hover {
   background-position: -50px 0;
 }
+.luggage {
+  overflow: hidden;
+}
+.luggage h2 {
+  border: medium none;
+  font-size: 14px;
+}
+.luggage ul {
+  border: 1px solid #CCCCCC;
+  overflow: hidden;
+}
+.luggage ul li {
+  border-bottom: 1px solid #CCCCCC;
+  border-left: 1px solid #CCCCCC;
+  float: left;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  margin: -1px 0 -1px -1px;
+  padding-left: 10px;
+  width: 169px;
+}
+

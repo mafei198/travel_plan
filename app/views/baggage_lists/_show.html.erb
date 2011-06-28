@@ -1,0 +1,18 @@
+<div class="luggage">
+  <% @baggage_list.luggage.each do |key, value| %>
+    <h2><%= value %>：	</h2>
+    <ul>
+      <% if @baggage_list.send(key.to_sym) == '' %>
+        <li>暂时没有护理用品</li>
+      <% else %>
+        <% @baggage_list.send(key.to_sym).split(',').each do |e| %>
+          <li><%= e %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+  <h2>备注</h2>
+  <div style="font-size:12px;border:solid 1px #CCCCCC;padding:10px;line-height:25px;">
+    <%= @baggage_list.notation %>
+  </div>
+</div>

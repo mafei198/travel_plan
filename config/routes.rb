@@ -18,6 +18,8 @@ TravelPlan::Application.routes.draw do
   get 'schedules/up'
   get 'schedules/down'
 
+  get 'baggage_lists/chouse'
+
   resources :plans
 
   resources :journeys

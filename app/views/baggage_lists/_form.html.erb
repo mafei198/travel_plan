@@ -25,7 +25,7 @@
           <td><%= check_box_tag "credentials[]", "保险卡" %> 保险卡</td>
         </tr>
 
-        <!---parapernalia--->
+        <!---paraphernalia--->
         <tr>
           <td height="30"><strong>旅行随身：</strong></td>
           <td></td>
@@ -240,8 +240,7 @@
         <tr>
           <td height="30"><strong>备 注</strong></td>
           <td></td>
-          <td><input type="hidden" value="1" name="edit"></td>
-          <td><input type="hidden" value="522518" name="planid"></td>
+          <td><%= hidden_field_tag :plan_id, @plan.id %></td>
         </tr>
 
         <tr>
