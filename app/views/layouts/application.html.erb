@@ -21,7 +21,7 @@
     </div>
     <%= render 'layouts/footer' %>
     <div id="toolBackTo" class="back-to" style="">
-      <%= link_to_function '返回顶部', "onclick='window.scrollTo(0,0);return false;'", :class => "back-top" %>
+      <%= link_to_function '返回顶部', 'window.scrollTo(0,0);', :class => "back-top" %>
       <%= link_to '返回首页', root_path, :class => "back-home" %>
     </div>
   </body>

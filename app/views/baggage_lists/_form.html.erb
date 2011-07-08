@@ -258,6 +258,7 @@
 
     <div class="create_btn">
       <%= submit_tag '保存', :style => "width:80jpx;" %>
-      <a href="/plan/luggage/522518" class="blue">返回</a></div>
+      <%= link_to '返回', @plan.baggage_list, :remote => true, :class => "blue" %>
+    </div>
   <% end %>
 </div>

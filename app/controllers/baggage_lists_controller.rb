@@ -16,6 +16,11 @@ class BaggageListsController < ApplicationController
     end
   end
 
+  def show
+    @baggage_list = BaggageList.find(params[:id])
+    respond_to :js
+  end
+
   def create
     @plan = Plan.find(params[:plan_id])
     @baggage_list = BaggageList.new(prepare_baggage_list_hash)
@@ -24,6 +29,14 @@ class BaggageListsController < ApplicationController
     else
       redirect_to chouse
     end
+  end
+
+  def update
+  end
+
+  def edit
+    @plan = BaggageList.find(params[:id]).plan
+    respond_to :js
   end
 
   def prepare_baggage_list_hash
@@ -36,12 +49,4 @@ class BaggageListsController < ApplicationController
     end
     params
   end
-
-  def update
-  end
-
-  def edit
-
-  end
-
 end

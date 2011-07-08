@@ -13,6 +13,9 @@
   <% end %>
   <h2>备注</h2>
   <div style="font-size:12px;border:solid 1px #CCCCCC;padding:10px;line-height:25px;">
-    <%= @baggage_list.notation %>
+    <%= @baggage_list.notation ? @baggage_list.notation : "暂时没有备注" %>
   </div>
+</div>
+<div style="padding:10px 0;text-align:center;">
+  <%= link_to "重新选择行李清单>>", edit_baggage_list_path(@baggage_list), :remote => true, :class => "blue" %> | <%= link_to "打印此清单", '#', :class => "blue" %>
 </div>
