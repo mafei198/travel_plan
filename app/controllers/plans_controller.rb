@@ -5,6 +5,7 @@ class PlansController < ApplicationController
   def home
     
   end
+
   # GET /plans
   # GET /plans.xml
   def index

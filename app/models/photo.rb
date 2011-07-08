@@ -1,10 +1,10 @@
 # == Schema Information
-# Schema version: 20110622081159
+# Schema version: 20110623094930
 #
 # Table name: photos
 #
-#  id                :integer         not null, primary key
-#  user_id           :integer
+#  id                :integer(4)      not null, primary key
+#  user_id           :integer(4)
 #  remote_photo_path :string(255)
 #  remote_photo_name :string(255)
 #  image_url         :string(255)

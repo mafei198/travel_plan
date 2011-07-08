@@ -20,7 +20,7 @@
       .name 目的地：
       .content
         -if !!@plan.places
-          = f.autocomplete_field :places, plans_autocomplete_place_name_path, 'data-delimiter' => ',', :size => 70, :value => @plan.places.inject(sum=""){|sum,p| sum+p.name+","}
+          = f.autocomplete_field :places, autocomplete_place_name_plans_path, 'data-delimiter' => ',', :size => 70, :value => @plan.places.inject(sum=""){|sum,p| sum+p.name+","}
         -else
           = f.autocomplete_field :places, plans_autocomplete_place_name_path, 'data-delimiter' => ',', :size => 70
     %li

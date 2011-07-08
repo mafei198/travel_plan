@@ -1,12 +1,22 @@
 # == Schema Information
-# Schema version: 20110517094558
+# Schema version: 20110623094930
 #
 # Table name: baggage_lists
 #
-#  id         :integer         not null, primary key
-#  plan_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id                :integer(4)      not null, primary key
+#  plan_id           :integer(4)
+#  credentials       :string(255)     default("")
+#  paraphernalia     :string(255)     default("")
+#  clothes           :string(255)     default("")
+#  care_supplies     :string(255)     default("")
+#  tools             :string(255)     default("")
+#  camera_equipment  :string(255)     default("")
+#  outdoor_equipment :string(255)     default("")
+#  foods             :string(255)     default("")
+#  medicines         :string(255)     default("")
+#  notation          :text
+#  created_at        :datetime
+#  updated_at        :datetime
 #
 
 class BaggageList < ActiveRecord::Base

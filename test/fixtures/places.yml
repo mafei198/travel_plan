@@ -1,9 +1,9 @@
 # == Schema Information
-# Schema version: 20110517094558
+# Schema version: 20110623094930
 #
 # Table name: places
 #
-#  id         :integer         not null, primary key
+#  id         :integer(4)      not null, primary key
 #  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime

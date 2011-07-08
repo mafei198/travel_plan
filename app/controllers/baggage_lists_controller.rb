@@ -1,18 +1,14 @@
 class BaggageListsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:chouse, :show]
+
   def chouse
     @plan = Plan.find(params[:id])
-    @baggage_list = @plan.baggage_list
+    @baggage_list = @plan.baggage_list || BaggageList.new(:plan_id => @plan.id)
 
-    if @baggage_list == nil or @baggage_list.baggage_list_empty?
-      render :json => {:success => true, 
-                       :content => render_to_string(:partial => 'form.html', 
-                                                    :locals => {:plan => @plan})
-      }
+    if @plan.baggage_list == nil or @baggage_list.baggage_list_empty?
+      render 'edit', :locals => {:plan => @plan, :baggage_list => @baggage_list}
     else
-      render :json => {:success => true, 
-                       :content => render_to_string(:partial => 'show.html', 
-                                                    :locals => {:baggage_list => @baggage_list})
-      }
+      render 'show', :locals => {:baggage_list => @baggage_list}
     end
   end
 
@@ -22,7 +18,6 @@ class BaggageListsController < ApplicationController
   end
 
   def create
-    @plan = Plan.find(params[:plan_id])
     @baggage_list = BaggageList.new(prepare_baggage_list_hash)
     if @baggage_list.save
       respond_to :js
@@ -32,13 +27,21 @@ class BaggageListsController < ApplicationController
   end
 
   def update
+    @baggage_list = BaggageList.find(params[:id])
+    if @baggage_list.update_attributes(prepare_baggage_list_hash)
+      render 'show', :locals => {:baggage_list => @baggage_list}
+    else
+      redirect_to @baggage_list.plan
+    end
   end
 
   def edit
-    @plan = BaggageList.find(params[:id]).plan
+    @baggage_list = BaggageList.find(params[:id])
+    @plan = @baggage_list.plan
     respond_to :js
   end
 
+  private
   def prepare_baggage_list_hash
     params.each do |key, value|
       if params[key].class != Array and key != "plan_id" 

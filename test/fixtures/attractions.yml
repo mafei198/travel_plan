@@ -1,16 +1,18 @@
 # == Schema Information
-# Schema version: 20110526015814
+# Schema version: 20110623094930
 #
 # Table name: attractions
 #
-#  id          :integer         not null, primary key
+#  id          :integer(4)      not null, primary key
 #  name        :string(255)
 #  description :text
-#  opentime    :string(255)
+#  starts      :string(255)
+#  ends        :string(255)
 #  address     :string(255)
+#  costs       :integer(10)
 #  created_at  :datetime
 #  updated_at  :datetime
-#  place_id    :integer
+#  place_id    :integer(4)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

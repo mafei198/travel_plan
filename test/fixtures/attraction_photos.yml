@@ -1,11 +1,11 @@
 # == Schema Information
-# Schema version: 20110622094539
+# Schema version: 20110623094930
 #
 # Table name: attraction_photos
 #
-#  id            :integer         not null, primary key
-#  attraction_id :integer
-#  photo_id      :integer
+#  id            :integer(4)      not null, primary key
+#  attraction_id :integer(4)
+#  photo_id      :integer(4)
 #  created_at    :datetime
 #  updated_at    :datetime
 #

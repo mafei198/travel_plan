@@ -12,14 +12,8 @@ class JourneysController < ApplicationController
   end
 
   def create
-    @journey = Journey.new(:schedule_id => params[:schedule_id])
-    @journey.link_type = params[:link_type]
-    @journey.name = params[:name]
-    @journey.description = params[:description]
-    @journey.costs = params[:costs]
-    @journey.starts = params[:starts]
-    @journey.ends = params[:ends]
-    @journey.link_id = params[:link_id]
+    ['authenticity_token', 'utf8', 'controller', 'action'].each{|key|params.delete(key)}
+    @journey = Journey.new(params)
 
     if @journey.save
       @schedule = Schedule.find(params[:schedule_id])
@@ -49,13 +43,22 @@ class JourneysController < ApplicationController
 
   def destroy
     @journey = Journey.find(params[:id])
-    if @journey.link_type == 'scenic'
-      PlanAttraction.find_by_attraction_id(@journey.link_id).destroy
-    end
+    schedule_id = @journey.schedule_id
+
     if @journey.destroy
-      render :json => {:success => true}
+      if @journey.link_type == 'scenic'
+        PlanAttraction.find_by_attraction_id(@journey.link_id).destroy
+      end
+
+      @schedule = Schedule.find(schedule_id)
+      @plan = @schedule.plan
+      @costs = schedule_costs(@schedule)
+      @content = render_to_string( :partial => 'journey.html', 
+                                  :locals  => { :schedule => @schedule, 
+                                                :plan     => @plan })
+      respond_to :js
     else
-      render :json => {:success => false}
+      redirect_to @plan
     end
   end
 end

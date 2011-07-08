@@ -34,7 +34,7 @@
             <div style="margin-left:60px;" id="activity_menu_<%= journey.id %>" class="hide amenu">
               <a onclick="plan.showActivityEdit(<%= journey.id %>);" href="javascript:void(0);">编辑</a>
               <a onclick="plan.uploadImage(<%= journey.id %>);" href="javascript:void(0);">上传附图</a>
-              <a onclick="plan.delActivity(<%= journey.id %>);" href="javascript:void(0);">删除</a>
+              <%= link_to '删除', journey, :confirm => '确定删除此条目吗？',:remote => true, :method => :delete %>
             </div>
             <div style="margin-left:100px;" id="move_menu_<%= journey.id %>" class="hide amenu">
               <a onclick="plan.moveSelectDay('103645','103644','1','100531514');" href="javascript:void(0);">移至第1天</a>

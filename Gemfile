@@ -19,7 +19,8 @@ gem 'client_side_validations'
 #分页插件
 gem "will_paginate", "~> 3.0.pre2"
 
-gem 'sqlite3'
+gem 'mysql2', '< 0.3'
+#gem 'sqlite3'
 
 #文件上传
 gem 'carrierwave'

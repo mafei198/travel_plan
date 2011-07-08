@@ -1,0 +1,3 @@
+$("#day_<%= @schedule.id %>").html("<%= escape_javascript(@content) %>");
+$("#day_costs_<%= @schedule.id %>").html("<%= escape_javascript(@costs.to_s) %>");
+$("#day_costs_header_<%= @schedule.id %>").html("<%= escape_javascript(@costs.to_s) %>");

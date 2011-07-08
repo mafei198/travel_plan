@@ -40,16 +40,7 @@ $(function(){
     var type = $(this).attr('key');
     if(type == 'baggage_list' && $('#'+type).html() == ""){
       plan_id = $("#baggage_list").attr('plan_id')
-      $.getJSON('/baggage_lists/chouse?id='+plan_id, function(data){
-        if(data.success)
-      {
-        $('#'+type).html(data.content);
-      }
-        else
-      {
-        return false;
-      }
-      });
+      $.get('/baggage_lists/chouse?id=' + plan_id)
     }
 
     $('#'+current).hide();

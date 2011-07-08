@@ -4,31 +4,29 @@ TravelPlan::Application.routes.draw do
 
   get 'personal_plans' => 'plans#personal_plans'
 
-  get "plans/autocomplete_place_name"
-
   get 'places/get_attractions'
   get 'places/get_china_citys'
 
   get 'attractions/info'
 
-  get 'journeys/up'
-  get 'journeys/down'
-  get 'journeys/destroy'
-
-  get 'schedules/up'
-  get 'schedules/down'
-
-  get 'baggage_lists/chouse'
-
-  resources :plans
-
-  resources :journeys
-
-  resources :schedules
-
   resources :photos
 
-  resources :baggage_lists
+  resources :plans do
+    get 'autocomplete_place_name', :on => :collection
+  end
+
+  resources :journeys, :schedules do
+    collection do
+      get 'up'
+      get 'down'
+    end
+  end
+
+  resources :baggage_lists do
+    get 'chouse', :on => :collection
+  end
+
+  root :to => "plans#home"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -79,7 +77,6 @@ TravelPlan::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "plans#home"
 
   # See how all your routes lay out with "rake routes"
 

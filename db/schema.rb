@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20110623094930) do
     t.string   "starts"
     t.string   "ends"
     t.string   "address"
-    t.decimal  "costs"
+    t.decimal  "costs",       :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "place_id"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(:version => 20110623094930) do
     t.text     "description"
     t.string   "starts"
     t.string   "ends"
-    t.decimal  "costs"
+    t.decimal  "costs",       :precision => 10, :scale => 0
     t.string   "link_type"
     t.integer  "schedule_id"
     t.integer  "link_id"

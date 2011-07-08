@@ -1,16 +1,16 @@
 # == Schema Information
-# Schema version: 20110622081159
+# Schema version: 20110623094930
 #
 # Table name: plans
 #
-#  id              :integer         not null, primary key
+#  id              :integer(4)      not null, primary key
 #  name            :string(255)
 #  description     :text
 #  start_off_place :string(255)
 #  start_off_date  :date
-#  people_num      :integer
-#  user_id         :integer
-#  travel_type_id  :integer
+#  people_num      :integer(4)
+#  user_id         :integer(4)
+#  travel_type_id  :integer(4)
 #  created_at      :datetime
 #  updated_at      :datetime
 #  order_list      :string(255)
