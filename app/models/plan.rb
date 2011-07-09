@@ -39,7 +39,7 @@ class Plan < ActiveRecord::Base
   belongs_to :user
   belongs_to :travel_type
 
-  #return an array which is filled with ordered journeys.
+  #return an array which is filled with ordered schedules.
   def ordered_schedules
     return [] if order_list_empty?
 

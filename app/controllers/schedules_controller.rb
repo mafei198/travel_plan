@@ -23,7 +23,9 @@ class SchedulesController < ApplicationController
 
     respond_to do |format|
       if @schedule.save
-        format.html { redirect_to @schedule.plan, :notice => '日程创建成功！' }
+        @plan = @schedule.plan
+        @ordered_schedules = @plan.ordered_schedules
+        #format.html { redirect_to @schedule.plan, :notice => '日程创建成功！' }
       else
         format.html { redirect_to @schedule.plan, :notice => '创建日志失败！'}
       end

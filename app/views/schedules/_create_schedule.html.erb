@@ -2,5 +2,5 @@
   <br>
   <br>
   <% add_schedule = image_tag('/images/btn_add_day.png') %>
-  <%= link_to add_schedule, schedules_path(:id => @plan), :method => :post %>
+  <%= link_to add_schedule, schedules_path(:id => @plan), :method => :post, :remote => true %>
 </div>
