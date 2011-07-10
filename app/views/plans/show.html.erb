@@ -87,9 +87,6 @@
 
   <div id="days">
     <%= render 'schedules/schedule' %>
-    <% if current_user != nil && current_user.id == @plan.user_id %>
-      <%= render 'schedules/create_schedule' %>
-    <% end %>
   </div>
 
   <div id="baggage_list" plan_id="<%= @plan.id %>" style="display:none;"></div>

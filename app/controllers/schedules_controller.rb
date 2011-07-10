@@ -25,6 +25,7 @@ class SchedulesController < ApplicationController
       if @schedule.save
         @plan = @schedule.plan
         @ordered_schedules = @plan.ordered_schedules
+        format.js
         #format.html { redirect_to @schedule.plan, :notice => '日程创建成功！' }
       else
         format.html { redirect_to @schedule.plan, :notice => '创建日志失败！'}

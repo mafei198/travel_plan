@@ -48,3 +48,7 @@
 <div id="iframe" class="iframe_add_activity" style="clear: both; overflow-x: hidden; overflow-y: hidden; border-top-color: rgb(171, 171, 171); border-right-color: rgb(171, 171, 171); border-bottom-color: rgb(171, 171, 171); border-left-color: rgb(171, 171, 171); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; width: 606px; height: 260px; display: none; " >
   <%= render 'journeys/add' %>
 </div>
+
+<% if current_user != nil && current_user.id == @plan.user_id %>
+  <%= render 'schedules/create_schedule' %>
+<% end %>
