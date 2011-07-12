@@ -13,9 +13,10 @@
 #  order_list  :string(255)
 #
 
+require 'lib/act_as_list'
 class Schedule < ActiveRecord::Base
-  after_create :add_schedule
-  after_destroy :destroy_schedule, :destroy_plan_attractions
+  include ActAsList
+  act_as_list :mount => :plan
 
   has_many :journeys
   belongs_to :plan
