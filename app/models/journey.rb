@@ -16,11 +16,9 @@
 #  updated_at  :datetime
 #
 
-require 'lib/act_as_list'
 class Journey < ActiveRecord::Base
-  include ActAsList
   belongs_to :schedule
-  act_as_list :mount => :schedule
+  act_as_items :mount => :schedule
 
   def self.link_types
     link_types = {'scenic' => '游玩', 'hotel' => '住宿', 'flight' => '航班', 

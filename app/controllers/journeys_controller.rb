@@ -1,10 +1,23 @@
 class JourneysController < ApplicationController
   include JourneysHelper
   before_filter :authenticate_user!
-  set_up_down Journey, 'schedule'
 
-  def go_to
+  def up
+    @journey = Journey.find(params[:id])
+    if swapid = @journey.move_higher
+      render :json => {:success => true, :swapid => swapid }
+    else
+      render :json => {:success => false}
+    end
+  end
 
+  def down
+    @journey = Journey.find(params[:id])
+    if swapid = @journey.move_lower
+      render :json => {:success => true, :swapid => swapid }
+    else
+      render :json => {:success => false}
+    end
   end
 
   def new

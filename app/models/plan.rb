@@ -17,6 +17,7 @@
 #
 
 class Plan < ActiveRecord::Base
+  act_as_list :items => :schedules
   validates :name, :length => {:in => 5..50}
   validates :people_num, :numericality => true
 
@@ -38,25 +39,4 @@ class Plan < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :travel_type
-
-  #return an array which is filled with ordered schedules.
-  def ordered_schedules
-    return [] if order_list_empty?
-
-    order_array.collect do |order|
-      schedules.each do |schedule|
-        if schedule.id == order.to_i
-          break schedule
-        end
-      end
-    end
-  end
-
-  def order_list_empty?
-    order_list == nil or order_list == ',' or order_list == ''
-  end
-
-  def order_array
-    order_list.split(',').delete_if{|e| e == '' }
-  end
 end

@@ -1,6 +1,23 @@
 class SchedulesController < ApplicationController
   before_filter :authenticate_user!
-  set_up_down Schedule, 'plan'
+
+  def up
+    @schedule = Schedule.find(params[:id])
+    if swapid = @schedule.move_higher
+      render :json => {:success => true, :swapid => swapid }
+    else
+      render :json => {:success => false}
+    end
+  end
+
+  def down
+    @schedule = Schedule.find(params[:id])
+    if swapid = @schedule.move_lower
+      render :json => {:success => true, :swapid => swapid }
+    else
+      render :json => {:success => false}
+    end
+  end
 
   def edit
     @schedule = Schedule.find(params[:id])
@@ -24,7 +41,7 @@ class SchedulesController < ApplicationController
     respond_to do |format|
       if @schedule.save
         @plan = @schedule.plan
-        @ordered_schedules = @plan.ordered_schedules
+        @schedules = @plan.list
         format.js
         #format.html { redirect_to @schedule.plan, :notice => '日程创建成功！' }
       else

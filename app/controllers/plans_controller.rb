@@ -35,7 +35,7 @@ class PlansController < ApplicationController
     @personal_plans = Plan.find_all_by_user_id(@plan.user_id)
     @plan_user = @plan.user
     @attractions = @plan.attractions
-    @ordered_schedules = @plan.ordered_schedules
+    @schedules = @plan.list
 
     respond_to do |format|
       format.html # show.html.erb

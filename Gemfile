@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem "act_as_list", :git => "git://github.com/mafei198/act_as_list.git"
+
 gem 'rails', '3.0.7'
 
 gem 'rake', '0.8.7'
