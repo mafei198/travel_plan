@@ -43,6 +43,11 @@ $(function(){
       $.get('/baggage_lists/chouse?id=' + plan_id)
     }
 
+    if(type == 'budget' && $('#'+type).html() == ""){
+      plan_id = $("#baggage_list").attr('plan_id')
+      $.get('/plans/budget?id=' + plan_id)
+    }
+
     $('#'+current).hide();
     $('#'+type).show();
   });

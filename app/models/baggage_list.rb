@@ -29,6 +29,6 @@ class BaggageList < ActiveRecord::Base
   end
 
   def baggage_list_empty?
-    credentials == '' && paraphernalia == '' && clothes == '' && care_supplies == '' && tools && camera_equipment == '' && outdoor_equipment == '' && foods == '' && medicines == ''
+    checked_items == nil or checked_items == ''
   end
 end

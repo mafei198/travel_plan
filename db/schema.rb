@@ -48,15 +48,7 @@ ActiveRecord::Schema.define(:version => 20110623094930) do
 
   create_table "baggage_lists", :force => true do |t|
     t.integer  "plan_id"
-    t.string   "credentials",       :default => ""
-    t.string   "paraphernalia",     :default => ""
-    t.string   "clothes",           :default => ""
-    t.string   "care_supplies",     :default => ""
-    t.string   "tools",             :default => ""
-    t.string   "camera_equipment",  :default => ""
-    t.string   "outdoor_equipment", :default => ""
-    t.string   "foods",             :default => ""
-    t.string   "medicines",         :default => ""
+    t.text     "checked_items"
     t.text     "notation"
     t.datetime "created_at"
     t.datetime "updated_at"

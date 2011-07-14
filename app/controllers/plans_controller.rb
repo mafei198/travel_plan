@@ -1,6 +1,6 @@
 class PlansController < ApplicationController
   autocomplete :place, :name
-  before_filter :authenticate_user!, :except => [:home, :index, :show]
+  before_filter :authenticate_user!, :except => [:home, :index, :show, :budget]
 
   def home
     
@@ -41,6 +41,10 @@ class PlansController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @plan }
     end
+  end
+
+  def budget
+    @plan = Plan.find(params[:id])
   end
 
   # GET /plans/new

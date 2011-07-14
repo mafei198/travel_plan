@@ -3,9 +3,9 @@ class BaggageListsController < ApplicationController
 
   def chouse
     @plan = Plan.find(params[:id])
-    @baggage_list = @plan.baggage_list || BaggageList.new(:plan_id => @plan.id)
+    @baggage_list = @plan.baggage_list
 
-    if @plan.baggage_list == nil or @baggage_list.baggage_list_empty?
+    if @baggage_list.baggage_list_empty?
       render 'edit', :locals => {:plan => @plan, :baggage_list => @baggage_list}
     else
       render 'show', :locals => {:baggage_list => @baggage_list}
@@ -17,18 +17,10 @@ class BaggageListsController < ApplicationController
     respond_to :js
   end
 
-  def create
-    @baggage_list = BaggageList.new(prepare_baggage_list_hash)
-    if @baggage_list.save
-      respond_to :js
-    else
-      redirect_to chouse
-    end
-  end
-
   def update
     @baggage_list = BaggageList.find(params[:id])
-    if @baggage_list.update_attributes(prepare_baggage_list_hash)
+    if @baggage_list.update_attributes(:checked_items => params[:checked_items].join(','),
+                                       :notation      => params[:notation])
       render 'show', :locals => {:baggage_list => @baggage_list}
     else
       redirect_to @baggage_list.plan
@@ -39,17 +31,5 @@ class BaggageListsController < ApplicationController
     @baggage_list = BaggageList.find(params[:id])
     @plan = @baggage_list.plan
     respond_to :js
-  end
-
-  private
-  def prepare_baggage_list_hash
-    params.each do |key, value|
-      if params[key].class != Array and key != "plan_id" 
-        params.delete(key)
-      else
-        params[key] = params[key].join(',') unless key == "plan_id"
-      end
-    end
-    params
   end
 end

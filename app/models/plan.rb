@@ -18,6 +18,7 @@
 
 class Plan < ActiveRecord::Base
   act_as_list :items => :schedules
+  after_create :create_baggage_list
   validates :name, :length => {:in => 5..50}
   validates :people_num, :numericality => true
 
@@ -39,4 +40,9 @@ class Plan < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :travel_type
+
+  private
+  def create_baggage_list
+    BaggageList.create(:plan_id => id)
+  end
 end

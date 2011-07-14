@@ -216,7 +216,7 @@ function iPlan()
         {
         $('#activity_status_' + id ).hide();
         $('#activity_act_' + id ).show();
-        alert(data.error);
+        //alert(data.error);
         }
         });
   } 
@@ -237,7 +237,7 @@ function iPlan()
         {
         $('#activity_status_' + id ).hide();
         $('#activity_act_' + id ).show();
-        alert(data.error);
+        //alert(data.error);
         }
         });
   } 
@@ -269,7 +269,7 @@ function iPlan()
     {
       $('#activity_status_' + id ).hide();
       $('#day_act_' + id ).show();
-      alert(data.error);
+      //alert(data.error);
     }
     });
   } 
@@ -298,7 +298,7 @@ function iPlan()
     {
       $('#activity_status_' + id ).hide();
       $('#day_act_' + id ).show();
-      alert(data.error);
+      //alert(data.error);
     }
     });
   } 
