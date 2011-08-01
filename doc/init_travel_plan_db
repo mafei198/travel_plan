@@ -1,0 +1,4 @@
+["游玩","团体活动","家庭","度假","出差","独立旅行","其他"].each{|name|TravelType.create!(:name=>name)}
+50.times{|i| Place.create!(:name=>"place_#{i}")}
+50.times{|i| Attraction.create!(:name=>"attraction_#{i}",:description=>"景点描述_#{i}",:starts=>"8:00",:ends=>"18:00",:place_id=>1)}
+
